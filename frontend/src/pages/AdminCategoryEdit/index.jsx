@@ -67,7 +67,7 @@ export default function AdminEditCategory() {
     <div className="auth">
       <DisplayPending pending={pending} />
       <form
-        className="adminEditCategory__container"
+        className="adminCreateProduct__container" // Use the same class name as create category
         onSubmit={updateCategoryHandler}
       >
         {updateSuccess ? (
@@ -75,8 +75,8 @@ export default function AdminEditCategory() {
         ) : error ? (
           <Alert severity="error">{error}</Alert>
         ) : null}
-        <div className="auth__title">Edit Category</div>
-
+        <div className="auth__title">Edit Category</div>{" "}
+        {/* Keep the title consistent */}
         <div className="auth__input__container">
           <label htmlFor="update_name">Name: </label>
           <input
@@ -97,7 +97,6 @@ export default function AdminEditCategory() {
             required
           ></textarea>
         </div>
-
         <button type="submit" className="auth-button green-button">
           Update
         </button>

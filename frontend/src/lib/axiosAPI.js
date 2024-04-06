@@ -214,7 +214,7 @@ export const adminDeleteProduct = async (userInfo, id) => {
     },
   };
   return await axios.delete(
-    `http://localhost:4000/product/products/${id}`,
+    `http://localhost:4000/product/delete/${id}`,
     config
   );
 };
