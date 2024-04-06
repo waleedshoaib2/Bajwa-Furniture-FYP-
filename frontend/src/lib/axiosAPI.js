@@ -73,7 +73,7 @@ export const adminGetProduct = async (userInfo, id) => {
     },
   };
   return await axios.get(
-    `http://localhost:4000/product/products/${id}`,
+    `http://localhost:4000/product/getproduct/${id}`,
     config
   );
 };

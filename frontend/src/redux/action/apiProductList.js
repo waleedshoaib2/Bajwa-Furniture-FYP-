@@ -11,6 +11,7 @@ export const getProductList = async (dispatch, search = "") => {
     search = "";
   }
 
+  console.log("in get product list ", search);
   dispatch(productListReset());
   dispatch(updateProductStart());
 

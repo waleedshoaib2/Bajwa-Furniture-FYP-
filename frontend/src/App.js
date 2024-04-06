@@ -40,6 +40,7 @@ import AOS from "aos";
 import AdminGetBlogList from "./pages/AdminBlogList";
 import "aos/dist/aos.css";
 import EditPost from "./pages/AdminEditBlog";
+import CustomerBlogList from "./pages/CustomerBlogList";
 function App() {
   React.useEffect(() => {
     AOS.init();
@@ -57,6 +58,7 @@ function App() {
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/getallblogs" element={<AdminGetBlogList />} />
           <Route path="/editblog/:id" element={<EditPost />} />
+          <Route path="/blogs" element={<CustomerBlogList />} />
 
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/" element={<Home />} />
