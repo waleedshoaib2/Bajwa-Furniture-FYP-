@@ -12,7 +12,8 @@ export default function HomeLanding() {
         data-aos-duration="1000"
       >
         <h1 className="home__landing__title">
-          Bring your dream space to life with our furniture collection
+          Transform your envisioned space into reality with our exquisite
+          furniture collection
         </h1>
         <div className="home-landing-button" onClick={() => navigate("/shop")}>
           Shop Now

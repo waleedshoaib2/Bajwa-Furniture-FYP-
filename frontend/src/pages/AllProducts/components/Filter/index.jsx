@@ -8,9 +8,8 @@ export default function Filter() {
   return (
     <div className="allproducts__leftPanelFilter">
       <div className="allproducts__leftPanelFilter__title">Filters</div>
-      <Availability />
+
       <Category />
-      <Brand />
       <Price />
     </div>
   );

@@ -30,29 +30,36 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ error: "Error creating product" });
   }
 };
-
 export const getProductsCustomer = async (req, res) => {
-  let keyword = [{}];
+  let keyword = {};
+
+  console.log("it does send a request", req.query.search);
 
   if (req.query.search && req.query.search !== "null") {
-    keyword = [
-      { name: { $regex: req.query.search, $options: "i" } },
-      { category: { $regex: req.query.search, $options: "i" } },
-      { brand: { $regex: req.query.search, $options: "i" } },
-      { description: { $regex: req.query.search, $options: "i" } },
-    ];
+    const searchTerm = req.query.search;
+    keyword = {
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } },
+        { description: { $regex: searchTerm, $options: "i" } },
+        { material: { $regex: searchTerm, $options: "i" } },
+        { color: { $regex: searchTerm, $options: "i" } },
+      ],
+    };
   }
 
   try {
-    const products = await Product.find({ $or: keyword });
+    const products = await Product.find(keyword);
     console.log(products);
-    res.json({ products }); 
-  } catch {
+    res.json({ products });
+  } catch (error) {
+    console.error(error);
     res.status(404).json({ message: "Products not found" });
   }
 };
+
 export const getProductById = async (req, res) => {
   try {
+    console.log("in product", req.params);
     const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });

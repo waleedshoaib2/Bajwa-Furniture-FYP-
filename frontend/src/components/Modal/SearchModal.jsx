@@ -40,7 +40,7 @@ export default function SearchModal({ openModal, setOpenModal }) {
                 Lamp
               </div>
               <div onClick={() => handleRedirect("/shop?search=bench")}>
-                Bench
+                Bed
               </div>
               <div onClick={() => handleRedirect("/shop?search=table%20decor")}>
                 Table Decor
