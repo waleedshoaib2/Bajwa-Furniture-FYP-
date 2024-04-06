@@ -75,17 +75,23 @@ export default function AdminCategoryList() {
         <table>
           <thead>
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Name</th>
+              <th scope="col">Description</th>
               <th scope="col">Edit/Delete</th>
             </tr>
           </thead>
           <tbody>
             {categories?.map((category) => {
+              // Truncate the description if it's too long
+              const truncatedDescription =
+                category.description.length > 50
+                  ? category.description.substring(0, 50) + "..."
+                  : category.description;
+
               return (
                 <tr key={category._id}>
-                  <td>{category._id}</td>
                   <td>{category.name}</td>
+                  <td>{truncatedDescription}</td>
                   <td>
                     <img
                       src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"

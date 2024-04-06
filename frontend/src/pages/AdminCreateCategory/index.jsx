@@ -16,7 +16,6 @@ export default function AdminCreateProduct() {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
 
-
   const [pending, setPending] = React.useState(false);
   const [error, setError] = React.useState();
   const [createSuccess, setCreateSuccess] = React.useState(false);
@@ -29,29 +28,29 @@ export default function AdminCreateProduct() {
     setPending(true);
     setFormError(null);
 
-  
     if (!name || !description) {
-      setFormError('Please fill in both the name and description fields');
-      setPending(false); 
-      return; 
+      setFormError("Please fill in both the name and description fields");
+      setPending(false);
+      return;
     }
 
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
-   
 
     try {
       const res = await adminCreateCategory(userInfo, formData);
       setPending(false);
-      setCreateSuccess(true); 
-    } 
-    catch (error) {
+      setCreateSuccess(true);
+      // Clear text fields
+      setName("");
+      setDescription("");
+    } catch (error) {
       setPending(false);
       if (error.response.status === 401) {
         dispatch(logout());
       } else {
-        setError(error.response.data.message || "An unknown error occurred"); 
+        setError(error.response.data.message || "An unknown error occurred");
       }
       setCreateSuccess(false);
     }
@@ -89,14 +88,14 @@ export default function AdminCreateProduct() {
             required
           ></textarea>
         </div>
-        
+
         <button type="submit" className="auth-button green-button">
           Create
         </button>
         <button
           className="auth-button"
           type="submit"
-          onClick={() => navigate("/admin/productlist")}
+          onClick={() => navigate("/admin/categorylist")}
         >
           Go Back
         </button>

@@ -35,7 +35,7 @@ import AdminNewsletter from "./pages/AdminNewsletter";
 import Newsletter from "./pages/Newsletter";
 import CreatePost from "./pages/AdminCreateBlog";
 import Blog from "./pages/Blog";
-
+import AboutUs from "./pages/AboutUs";
 import AOS from "aos";
 import AdminGetBlogList from "./pages/AdminBlogList";
 import "aos/dist/aos.css";
@@ -59,6 +59,7 @@ function App() {
           <Route path="/getallblogs" element={<AdminGetBlogList />} />
           <Route path="/editblog/:id" element={<EditPost />} />
           <Route path="/blogs" element={<CustomerBlogList />} />
+          <Route path="/aboutus" element={<AboutUs />} />
 
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/" element={<Home />} />
