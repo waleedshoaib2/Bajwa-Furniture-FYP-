@@ -84,4 +84,46 @@ const sendNewsletters = async () => {
   });
 };
 
-export default sendNewsletters;
+// 5. Email Transport with Gmail
+const sendNewsletterToUser = async (req, res) => {
+  try {
+    console.log(req.body);
+    const userEmail = req.body.user_email;
+    const user = await User.findOne({ email: userEmail }); // Query the User model to find the user by email
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const products = await fetchProducts(); // Fetch products
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USERNAME, // Your Gmail address
+        pass: process.env.GMAIL_PASSWORD, // Your Gmail password
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.GMAIL_USERNAME, // Your Gmail address
+      to: userEmail,
+      subject: "Discover the Latest Products!",
+      html: generateEmailContent(user, products), // Assuming generateEmailContent expects user as the first parameter
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent:", info.response);
+        res.status(200).json({ message: "Email sent successfully" });
+      }
+    });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ error: "Failed to send email" });
+  }
+};
+
+export { sendNewsletters, sendNewsletterToUser };

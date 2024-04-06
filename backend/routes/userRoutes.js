@@ -17,10 +17,8 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 router.put("/newsletter", checkAuth, news);
-// Protected routes
 router.get("/profile", checkAuth, profile);
 
-// Admin-only route
 router.get(
   "/all-users",
   checkAuth,
