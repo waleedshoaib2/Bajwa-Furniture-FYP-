@@ -58,7 +58,8 @@ const AdminChat = () => {
           <li key={chat._id} className="chat-item">
             <Link to={`/chats/${chat._id}`} className="chat-link">
               <div>
-                <span className="chat-user">Chat with: {chat.user}</span> <br />
+                <span className="chat-user">Chat with: {chat.userName}</span>{" "}
+                <br />
                 <span className="last-message">
                   Last Message: {chat.lastMessageSnippet}
                 </span>
