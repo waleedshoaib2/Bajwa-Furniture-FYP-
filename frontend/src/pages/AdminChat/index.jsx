@@ -20,6 +20,7 @@ const AdminChat = () => {
           config
         );
         setChats(response.data);
+        console.log(response.data);
       } catch (err) {
         setError(err);
         if (err.response && err.response.status === 401) {
@@ -52,26 +53,21 @@ const AdminChat = () => {
   };
 
   return (
-    <div className="admin-chat-container">
-      <ul className="chat-list">
-        {chats.map((chat) => (
-          <li key={chat._id} className="chat-item">
-            <Link to={`/chats/${chat._id}`} className="chat-link">
-              <div>
-                <span className="chat-user">Chat with: {chat.user}</span> <br />
-                <span className="last-message">
-                  Last Message: {chat.lastMessageSnippet}
-                </span>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <button onClick={handleClick} className="create-chat-btn">
-        Create Chat
-      </button>
-    </div>
+    <ul className="chat-list">
+      {chats.map((chat) => (
+        <li key={chat._id} className="chat-item">
+          <Link to={`/chats/${chat._id}`} className="chat-link">
+            <div>
+              <span className="chat-user">Chat with: {chat.user.name}</span>{" "}
+              <br />
+              <span className="last-message">
+                Last Message: {chat.lastMessageSnippet}
+              </span>
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 
