@@ -41,6 +41,10 @@ import AdminGetBlogList from "./pages/AdminBlogList";
 import "aos/dist/aos.css";
 import EditPost from "./pages/AdminEditBlog";
 import CustomerBlogList from "./pages/CustomerBlogList";
+
+import AdminChat from "./pages/AdminChat";
+import ChatRoom from "./pages/ChatRoom";
+import ChatList from "./pages/CustomerChat";
 function App() {
   React.useEffect(() => {
     AOS.init();
@@ -61,6 +65,7 @@ function App() {
           <Route path="/blogs" element={<CustomerBlogList />} />
           <Route path="/aboutus" element={<AboutUs />} />
 
+          <Route path="/chats/:chatId" element={<ChatRoom />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/" element={<Home />} />
           <Route path="/newarrivals" element={<NewArrivals />} />
@@ -72,7 +77,8 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/legal" element={<TermsOfServices />} />
           <Route element={<PrivateRoutes />}>
-            <Route path="/profile" element={<UserDetailProfile />} />
+            <Route path="/profile" element={<UserDetailProfile />} />{" "}
+            <Route path="/chat" element={<ChatList />} />
             <Route path="/orders" element={<UserOrder />} />
             <Route path="/order/:id" element={<UserOrderDetail />} />
           </Route>
@@ -93,6 +99,8 @@ function App() {
               path="/admin/editcategory/:id"
               element={<AdminEditCategory />}
             />
+            <Route path="/admin/chat" element={<AdminChat />} />
+
             <Route
               path="/admin/createproduct/"
               element={<AdminCreateProduct />}

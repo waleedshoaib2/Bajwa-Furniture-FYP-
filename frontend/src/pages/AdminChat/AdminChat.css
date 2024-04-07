@@ -1,0 +1,43 @@
+.admin-chat-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chat-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chat-item {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chat-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.chat-user {
+  font-weight: bold;
+}
+
+.last-message {
+  color: #666;
+}
+
+.create-chat-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.create-chat-btn:hover {
+  background-color: #0056b3;
+}

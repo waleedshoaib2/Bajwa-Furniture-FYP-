@@ -70,8 +70,6 @@ export const register = (name, email, password, phoneNumber, address) => {
       );
 
       dispatch(registerSuccess(data));
-      dispatch(loginSuccess(data));
-      localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch(
         registerFailed(
