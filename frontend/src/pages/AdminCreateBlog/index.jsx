@@ -3,11 +3,12 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import "./CreatePost.css";
-
+import { useNavigate } from "react-router-dom";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageURL, setImageURL] = useState("");
+  const navigate = useNavigate();
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleContentChange = (value) => setContent(value);
@@ -21,6 +22,7 @@ const CreatePost = () => {
         { title, content, image: imageURL }
       );
       console.log("New post created:", response.data);
+      navigate(`/getallblogs`);
     } catch (error) {
       console.error("Error creating post:", error);
     }

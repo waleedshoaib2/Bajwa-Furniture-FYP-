@@ -19,7 +19,7 @@ const AboutUs = () => {
         <img
           src="https://dhb3yazwboecu.cloudfront.net/1384/collections/PARALEL/Point_paralel_1920.jpg"
           alt=""
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%", height: "auto", paddingBottom: "80px" }}
         />
         <div style={styles.aboutUs}>
           <h1 style={styles.heading}>About Us</h1>
@@ -30,8 +30,8 @@ const AboutUs = () => {
                   src="https://assets.vogue.com/photos/66070733f43df49e80c7c0c5/1:1/w_1416,h_1416,c_limit/outdoor%20furniture%20site.jpeg"
                   alt=""
                   style={{
-                    width: "500px",
-                    height: "500px",
+                    width: "600px",
+                    height: "600px",
 
                     marginRight: "200px",
                     marginLeft: "200px",
@@ -85,11 +85,11 @@ const AboutUs = () => {
 
             <div style={styles.section}>
               <img
-                src="https://assets.vogue.com/photos/66070733f43df49e80c7c0c5/1:1/w_1416,h_1416,c_limit/outdoor%20furniture%20site.jpeg"
+                src="https://5.imimg.com/data5/SELLER/Default/2023/6/316948467/HO/YR/IV/633956/office-modular-furniture-500x500.png"
                 alt=""
                 style={{
-                  width: "500px",
-                  height: "500px",
+                  width: "600px",
+                  height: "600px",
 
                   marginRight: "200px",
                   marginLeft: "200px",
@@ -130,7 +130,7 @@ const AboutUs = () => {
                 </p>
               </div>
               <img
-                src="https://akamai-scene7.grandinroad.com/is/image/frontgate/outdoor_shop_the_look?$wgih$"
+                src="https://ae01.alicdn.com/kf/Sa6f8b4fa61fc4498bd7d3a2188584b57r/Light-luxury-rock-slab-dining-table-and-chairs-combination-living-room-Scandinavian-modern-minimalist-rectangular-dining.jpg_Q90.jpg_.webp"
                 alt=""
                 style={{
                   width: "500px",
@@ -142,23 +142,31 @@ const AboutUs = () => {
               />
             </div>
             <div style={styles.section}>
-              <h2 style={styles.sectionHeading}>Get in Touch</h2>
-              <p style={styles.paragraph}>
-                Have a question about a product? Need assistance with your
-                order? We're here to help! Contact our friendly customer support
-                team at{" "}
-                <span style={{ color: "#4caf50" }}>
-                  BajwaFurniture@gmail.com
-                </span>
-                .
-              </p>
-              <p style={styles.paragraph}>
-                Thank you for choosing{" "}
-                <span style={{ color: "#f50057" }}>Bajwa Furniture Store</span>.
-                We look forward to helping you transform your space into a place
-                you'll love coming home to.
-              </p>
+              <img
+                src="https://funky-chunky-furniture.co.uk/cdn/shop/files/Chopwell_Farmhouse_Console_Table_square_d5ce42ae-3235-4e5b-8ccf-c4fc953bab14_500x.jpg?v=1695638380"
+                alt=""
+                style={{
+                  width: "600px",
+                  height: "600px",
+                  marginRight: "200px",
+                  marginLeft: "200px",
+                  // Adjust margin as needed
+                }}
+              />
+              <div>
+                <h2 style={styles.sectionHeading}>Get in Touch</h2>
+                <p style={styles.paragraph}>
+                  Have a question about a product? Need assistance with your
+                  order? We're here to help! Contact our friendly customer
+                  support team at this email address BajwaFurniture@gmail.com.
+                </p>
+              </div>
             </div>
+            <p style={{ ...styles.paragraph, fontWeight: "bold" }}>
+              Thank you for choosing Bajwa Furniture Store. We look forward to
+              helping you transform your space into a place you'll love coming
+              home to.
+            </p>
           </div>
         </div>
         ;
@@ -175,18 +183,14 @@ const styles = {
     fontFamily: "Arial, sans-serif",
   },
   heading: {
+    paddingTop: "60px", // Add space between image and heading
+    paddingBottom: "60px",
     color: "#333",
     marginTop: "30px",
     fontSize: "52px", // Increased font size
     fontWeight: "bold", // Increased font weight
     marginBottom: "30px",
-    fontstyle: "italic",
-    paddingBottom: "80px", // Remove bottom padding
-    textAlign: "center", // Center align the heading
-    backgroundImage: 'url("YOUR_IMAGE_SRC")', // Add your image source here
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "right center", // Adjust as per your preference
-  },
+
   section: {
     display: "flex",
     paddingBottom: "30px",
@@ -197,7 +201,7 @@ const styles = {
     fontWeight: "bold",
     color: "#000",
     fontSize: "34px",
-    marginBottom: "50px",
+    marginBottom: "30px",
     paddingtop: "0px", // Remove padding
     textAlign: "center",
   },
@@ -206,7 +210,7 @@ const styles = {
   },
   paragraph: {
     margin: "20px",
-    marginBottom: "200px",
+    marginBottom: "300px",
     fontSize: "26px",
   },
   list: {

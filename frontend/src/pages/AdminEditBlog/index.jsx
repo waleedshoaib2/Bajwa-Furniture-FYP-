@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import "./EditPost.css";
 
 const EditPost = ({ blogId }) => {
@@ -14,7 +14,7 @@ const EditPost = ({ blogId }) => {
   const contentRef = useRef(null);
   const imageURLRef = useRef(null);
   const params = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
@@ -50,6 +50,7 @@ const EditPost = ({ blogId }) => {
         }
       );
       console.log("Post updated:", response.data);
+      navigate(`/getallblogs`);
     } catch (error) {
       console.error("Error updating post:", error);
     }
@@ -94,7 +95,7 @@ const EditPost = ({ blogId }) => {
         </div>
 
         <button type="submit" className="publish-button">
-          Publish
+          Update
         </button>
       </form>
     </div>

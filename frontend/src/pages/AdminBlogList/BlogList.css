@@ -1,0 +1,39 @@
+@media only screen and (max-width: 768px) {
+  .admin-list__container {
+    /* Adjust container width or padding */
+    width: 90%;
+    padding: 0 10px;
+  }
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 480px) {
+  .admin-add-button {
+    /* Adjust button font size or padding */
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  table {
+    /* Adjust table font size or padding */
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  th,
+  td {
+    /* Adjust cell padding */
+    padding: 6px;
+  }
+
+  .admin-add-button {
+    /* Adjust button width or margin */
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Adjust the View button */
+  .admin-add-button {
+    margin-left: 0;
+  }
+}

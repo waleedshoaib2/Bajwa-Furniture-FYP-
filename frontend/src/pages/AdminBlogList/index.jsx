@@ -5,7 +5,7 @@ import axios from "axios";
 import { logout } from "../../redux/action/apiUserAction";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
-
+import "./BlogList.css";
 export default function AdminGetBlogList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -99,10 +99,12 @@ export default function AdminGetBlogList() {
                     alt="delete_icon"
                   />
                 </td>
-                <td>
-                  {" "}
-                  {/* Add a new column containing the View button */}
-                  <button onClick={() => handleView(blog._id)}>View</button>
+                <td
+                  className="admin-add-button"
+                  style={{ marginLeft: "280px" }} // Add left margin of 20px
+                  onClick={() => handleView(blog._id)}
+                >
+                  View
                 </td>
               </tr>
             ))}
