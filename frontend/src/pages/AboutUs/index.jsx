@@ -35,6 +35,7 @@ const AboutUs = () => {
 
                     marginRight: "200px",
                     marginLeft: "200px",
+                    marginTop: "90px",
                   }} // Adjust width and margin as needed
                 />
                 <div>
@@ -185,16 +186,11 @@ const styles = {
     paddingTop: "60px", // Add space between image and heading
     paddingBottom: "60px",
     color: "#333",
-    fontSize: "48px", // Increased font size
+    marginTop: "30px",
+    fontSize: "52px", // Increased font size
     fontWeight: "bold", // Increased font weight
     marginBottom: "30px",
-    // Remove bottom padding
-    textAlign: "center", // Center align the heading
-    backgroundImage: 'url("YOUR_IMAGE_SRC")', // Add your image source here
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "right center", // Adjust as per your preference
-    padding: "0 100px", // Adjust padding to make space for the image
-  },
+
   section: {
     display: "flex",
     paddingBottom: "30px",
@@ -229,6 +225,7 @@ const styles = {
 
   ourstory: {
     display: "flex",
+    alignitems: "center",
   },
 };
 
