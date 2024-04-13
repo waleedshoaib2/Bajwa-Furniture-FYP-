@@ -94,7 +94,6 @@ export default function LoginPage() {
         <CustomDivider text={"OR"} />
         <GoogleLogin
           clientId="981784294356-lnotmt4ivm82d1f4pg3hov9t0hluht6t.apps.googleusercontent.com"
-          // Replace with your ID
           buttonText="Login with Google"
           onSuccess={handleGoogleSuccess}
           onFailure={handleGoogleFailure}
