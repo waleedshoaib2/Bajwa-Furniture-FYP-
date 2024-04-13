@@ -53,30 +53,13 @@ const AdminChat = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <ul className="chat-list">
-      {chats.map((chat) => (
-        <li key={chat._id} className="chat-item">
-          <Link to={`/chats/${chat._id}`} className="chat-link">
-            <div>
-              <span className="chat-user">Chat with: {chat.user.name}</span>{" "}
-              <br />
-              <span className="last-message">
-                Last Message: {chat.lastMessageSnippet}
-              </span>
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
-=======
-    <div className="admin-chat-container">
+    <>
       <ul className="chat-list">
         {chats.map((chat) => (
           <li key={chat._id} className="chat-item">
             <Link to={`/chats/${chat._id}`} className="chat-link">
               <div>
-                <span className="chat-user">Chat with: {chat.userName}</span>{" "}
+                <span className="chat-user">Chat with: {chat.user.name}</span>{" "}
                 <br />
                 <span className="last-message">
                   Last Message: {chat.lastMessageSnippet}
@@ -86,12 +69,28 @@ const AdminChat = () => {
           </li>
         ))}
       </ul>
+      <div className="admin-chat-container">
+        <ul className="chat-list">
+          {chats.map((chat) => (
+            <li key={chat._id} className="chat-item">
+              <Link to={`/chats/${chat._id}`} className="chat-link">
+                <div>
+                  <span className="chat-user">Chat with: {chat.userName}</span>{" "}
+                  <br />
+                  <span className="last-message">
+                    Last Message: {chat.lastMessageSnippet}
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-      <button onClick={handleClick} className="create-chat-btn">
-        Create Chat
-      </button>
-    </div>
->>>>>>> b296a847d729a44d4f726c9c511b2b8955c66c57
+        <button onClick={handleClick} className="create-chat-btn">
+          Create Chat
+        </button>
+      </div>
+    </>
   );
 };
 
