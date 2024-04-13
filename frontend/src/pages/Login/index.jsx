@@ -7,7 +7,12 @@ import Meta from "../../components/Meta";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
 import CustomDivider from "../../components/CustomDivider";
-import GoogleLogin from "react-google-login";
+
+// Import your login action
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// Your other imports and code...
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -30,38 +35,17 @@ export default function LoginPage() {
     window.scrollTo(0, 0);
     if (userInfo) {
       navigate(`/${redirect}`);
+      toast.success("Login successful!"); // Display success toast
     }
-  }, [navigate, userInfo, redirect]);
+    if (error) {
+      toast.error(errorMessage); // Display error toast
+    }
+  }, [navigate, userInfo, error, errorMessage, redirect]);
 
   function handleLogin(e) {
     e.preventDefault();
     dispatch(login(email, password));
   }
-  const handleGoogleSuccess = (response) => {
-    console.log("Google Login Success: ", response);
-
-    // 1. Get the ID token from the response
-    const idToken = response.tokenId;
-
-    // 2. Make a POST request to your backend to verify the token
-    //    and complete the login process
-    fetch("/auth/google", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ idToken }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Assuming your backend responds with user data,
-        // handle the data and redirect as needed
-        console.log("Backend Response:", data);
-      });
-  };
-  const handleGoogleFailure = (error) => {
-    console.error("Google Login Failure: ", error);
-  };
 
   return (
     <div className="auth">
@@ -92,13 +76,7 @@ export default function LoginPage() {
           Log In
         </button>
         <CustomDivider text={"OR"} />
-        <GoogleLogin
-          clientId="981784294356-lnotmt4ivm82d1f4pg3hov9t0hluht6t.apps.googleusercontent.com"
-          // Replace with your ID
-          buttonText="Login with Google"
-          onSuccess={handleGoogleSuccess}
-          onFailure={handleGoogleFailure}
-        />
+
         <h1 className="auth__navigation">
           Need an account?{" "}
           <span onClick={(e) => navigate(`/register?redirect=${redirect}`)}>
@@ -122,6 +100,7 @@ export default function LoginPage() {
           </span>
         </h1>
       </form>
+      <ToastContainer /> {/* Toast container */}
     </div>
   );
 }
