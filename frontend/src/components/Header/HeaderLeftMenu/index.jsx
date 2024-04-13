@@ -17,6 +17,7 @@ export default function HeaderLeftMenu() {
       <NavigationText text={"Home"} url="/" />
       <NavigationText text={"New Arrivals"} url="/newarrivals" />
       <NavigationText text={"All Products"} url="/shop" />
+      <NavigationText text={"About Us"} url="/aboutus" />
     </div>
   );
 }

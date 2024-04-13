@@ -72,7 +72,8 @@ export const login = async (req, res, next) => {
 };
 export const signup = async (req, res, next) => {
   try {
-    const { name, email, phoneNumber, address, password } = req.body;
+    const { name, email, phoneNumber, address, password, subscribeNewsletter } =
+      req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -85,6 +86,8 @@ export const signup = async (req, res, next) => {
       phoneNumber,
       address,
       password: hashedPassword,
+
+      newsletterSubscribed: subscribeNewsletter,
     });
 
     await newUser.save();

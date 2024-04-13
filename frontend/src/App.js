@@ -77,12 +77,14 @@ function App() {
           <Route path="/successPayment" element={<SuccessPayment />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/legal" element={<TermsOfServices />} />
+
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<UserDetailProfile />} />{" "}
             <Route path="/chat" element={<ChatList />} />
             <Route path="/orders" element={<UserOrder />} />
             <Route path="/order/:id" element={<UserOrderDetail />} />
           </Route>
+
           <Route element={<AdminRoutes />}>
             <Route path="/admin/userlist" element={<AdminUserList />} />
             <Route path="/admin/editUser/:id" element={<AdminEditUser />} />

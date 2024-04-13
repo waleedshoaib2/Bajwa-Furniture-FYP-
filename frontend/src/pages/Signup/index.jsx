@@ -22,6 +22,7 @@ export default function SignupPage() {
   const [message, setMessage] = React.useState(null);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [address, setAddress] = React.useState("");
+  const [subscribeNewsletter, setSubscribeNewsletter] = React.useState(false);
 
   // get query param
   const [searchParams] = useSearchParams();
@@ -45,7 +46,16 @@ export default function SignupPage() {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      dispatch(register(name, email, password, phoneNumber, address));
+      dispatch(
+        register(
+          name,
+          email,
+          password,
+          phoneNumber,
+          address,
+          subscribeNewsletter
+        )
+      );
     }
   }
 
@@ -117,6 +127,16 @@ export default function SignupPage() {
             type="text"
             onChange={(e) => setAddress(e.target.value)}
             required
+          />
+        </div>
+
+        <div className="auth__input__container">
+          <label htmlFor="subscribe_newsletter">Subscribe to Newsletter</label>
+          <input
+            id="subscribe_newsletter"
+            type="checkbox"
+            checked={subscribeNewsletter}
+            onChange={(e) => setSubscribeNewsletter(e.target.checked)} // Step 3: Update state when checkbox value changes
           />
         </div>
 
