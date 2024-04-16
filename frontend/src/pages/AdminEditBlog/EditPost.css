@@ -1,10 +1,10 @@
 .create-post-container {
+  width: 90%; /* Adjusted width for better fit */
   max-width: 1200px;
-  height: 800px;
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
-  padding: 60px;
+  padding: 30px; /* Reduced padding for better fit */
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,11 +31,15 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  width: 100%; /* Ensures inputs and textareas span full width */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
 .react-quill {
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 100%; /* Ensures the react-quill editor spans full width */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
 .publish-button {
@@ -46,8 +50,23 @@ textarea {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  width: 100%; /* Ensures button spans full width */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
 .publish-button:hover {
   background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .create-post-container {
+    padding: 20px; /* Reduced padding for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .create-post-container {
+    padding: 10px; /* Further reduced padding for smallest screens */
+  }
 }

@@ -15,16 +15,12 @@ export default function HomeLanding() {
           Transform your envisioned space into reality with our exquisite
           furniture collection
         </h1>
-        <div className="home-landing-button" onClick={() => navigate("/shop")}>
-          Shop Now
-        </div>
       </div>
 
       <img
         className="home__landing__image"
-        src="https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        // src="https://images.pexels.com/photos/3933240/pexels-photo-3933240.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="landing background images"
+    src="https://images.pexels.com/photos/4857759/pexels-photo-4857759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+
       />
     </div>
   );

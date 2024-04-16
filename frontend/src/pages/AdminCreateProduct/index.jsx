@@ -23,6 +23,7 @@ export default function AdminCreateProduct() {
   const [error, setError] = React.useState();
   const [createSuccess, setCreateSuccess] = React.useState(false);
   const [categories, setCategories] = React.useState(false);
+  const [productno, setProductno] = React.useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ export default function AdminCreateProduct() {
     formData.append("price", price);
     formData.append("color", color);
     formData.append("material", material);
+    formData.append("productno", productno);
 
     adminCreateProduct(userInfo, formData)
       .then(function (res) {
@@ -83,6 +85,16 @@ export default function AdminCreateProduct() {
         ) : null}
 
         <div className="auth__title">Create new Product</div>
+        <div className="auth__input__container">
+          <label htmlFor="update_name">Product No: </label>
+          <input
+            id="update_productno"
+            type="text"
+            onChange={(e) => setProductno(e.target.value)}
+            value={productno}
+            required
+          />
+        </div>
 
         <div className="auth__input__container">
           <label htmlFor="update_name">Name: </label>

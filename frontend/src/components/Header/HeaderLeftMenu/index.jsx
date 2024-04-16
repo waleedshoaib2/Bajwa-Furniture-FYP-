@@ -13,10 +13,10 @@ export default function HeaderLeftMenu() {
 
   return (
     <div className="header__container">
-      <img height={180} width={180} src="./logo.svg" />
+      <img className="logo-bf" src="./logo.svg" alt="logo" />
       <NavigationText text={"Home"} url="/" />
-      <NavigationText text={"New Arrivals"} url="/newarrivals" />
-      <NavigationText text={"All Products"} url="/shop" />
+      <NavigationText text={"Blogs"} url="/blogs" />
+      <NavigationText text={"Products"} url="/shop" />
       <NavigationText text={"About Us"} url="/aboutus" />
     </div>
   );
