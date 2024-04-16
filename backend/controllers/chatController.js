@@ -109,7 +109,10 @@ async function getChatForUser(req, res) {
 // Function to get all chats (admin only)
 async function getAllChats(req, res) {
   try {
-    const chats = await Chat.find().populate("messages.sender");
+    const chats = await Chat.find().populate({
+      path: "user",
+      select: "name", // only select the 'name' field of the user
+    });
     res.status(200).json(chats);
   } catch (error) {
     console.error(error);

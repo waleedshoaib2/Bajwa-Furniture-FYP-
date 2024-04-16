@@ -19,8 +19,8 @@ export default function HomeLanding() {
 
       <img
         className="home__landing__image"
-        src="https://images.pexels.com/photos/4857759/pexels-photo-4857759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt="landing background images"
+    src="https://images.pexels.com/photos/4857759/pexels-photo-4857759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+
       />
     </div>
   );

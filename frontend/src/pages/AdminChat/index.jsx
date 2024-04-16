@@ -20,6 +20,7 @@ const AdminChat = () => {
           config
         );
         setChats(response.data);
+        console.log(response.data);
       } catch (err) {
         setError(err);
         if (err.response && err.response.status === 401) {
