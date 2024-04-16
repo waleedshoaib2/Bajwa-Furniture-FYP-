@@ -7,7 +7,7 @@ import AdminRoutes from "./utils/AdminRoutes";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import NewArrivals from "./pages/NewArrivals";
+
 import AllProducts from "./pages/AllProducts";
 import SuccessPayment from "./pages/SuccessPayment";
 import ProductDetail from "./pages/ProductDetail";
@@ -69,7 +69,7 @@ function App() {
           <Route path="/chats/:chatId" element={<ChatRoom />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/" element={<Home />} />
-          <Route path="/newarrivals" element={<NewArrivals />} />
+
           <Route path="/shop" element={<AllProducts />} />
 
           <Route path="/product/:id" element={<ProductDetail />} />

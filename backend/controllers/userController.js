@@ -74,6 +74,7 @@ export const signup = async (req, res, next) => {
   try {
     const { name, email, phoneNumber, address, password, subscribeNewsletter } =
       req.body;
+    console.log("happy birthday", subscribeNewsletter);
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {

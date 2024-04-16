@@ -5,11 +5,14 @@
   justify-content: space-between;
   height: 120px;
   width: 100%;
+  background-color: white;
+  // color: white;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   &__container {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
   }
 
   &__account-text {
@@ -79,4 +82,8 @@
   &:hover::after {
     height: 2px;
   }
+}
+.logo-bf {
+  height: 140px;
+  width: 140px;
 }
