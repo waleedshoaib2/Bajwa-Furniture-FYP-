@@ -35,7 +35,6 @@
     font-weight: 300;
 
     color: black;
-    background-color: burlywood;
 
     white-space: nowrap;
     font-style: italic;
@@ -189,14 +188,14 @@
 
   h1,
   h2 {
-    font-weight: bold;
+    font-weight: normal;
     font-style: italic;
     text-align: left; /* Center text */
   }
 }
 .allproducts__leftPanelFilter__container {
   margin-top: 0px;
-  background-color: burlywood; /* Add margin-bottom to create space */
+  /* Add margin-bottom to create space */
 }
 
 // @include breakpoints.breakpoint(tablet) {

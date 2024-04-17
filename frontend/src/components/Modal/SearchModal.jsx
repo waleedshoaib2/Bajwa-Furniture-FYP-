@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalBody from "./ModalBody";
 
 export default function SearchModal({ openModal, setOpenModal }) {
   const navigate = useNavigate();
-  const [searchProduct, setSearch] = React.useState("");
+  const [searchProduct, setSearchProduct] = useState(""); // Changed setSearch to setSearchProduct
+
+  const fileInputRef = useRef(null);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    // Handle file upload logic here
+  };
 
   const handleSearchInput = (e) => {
     e.preventDefault();
@@ -22,7 +29,21 @@ export default function SearchModal({ openModal, setOpenModal }) {
       <ModalBody open={openModal}>
         <>
           <form className="search-modal__header" onSubmit={handleSearchInput}>
-            <input onChange={(e) => setSearch(e.target.value)} />
+            <input onChange={(e) => setSearchProduct(e.target.value)} />
+            <div style={{ position: "relative", display: "inline-block" }}>
+              <img
+                className="icon-medium margin-inline-end-36"
+                src="https://www.svgrepo.com/show/437538/camera-viewfinder.svg"
+                alt="close_modal"
+                onClick={() => fileInputRef.current.click()}
+              />
+              <input
+                type="file"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleFileUpload}
+              />
+            </div>
             <img
               className="icon-medium margin-inline-end-36"
               src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/close.png"

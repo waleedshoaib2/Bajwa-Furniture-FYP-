@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 .about-us-container {
   position: relative;
 }
@@ -12,42 +14,46 @@
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   margin: 0 auto;
   font-family: Arial, sans-serif;
-}
 
-.section {
-  display: flex;
-  flex-direction: row; /* Change to column layout */
-}
+  .section {
+    display: flex;
 
-.our-story {
-  display: flex;
-  flex-direction: row-reverse; /* Reverse the order of items */
-  align-items: center; /* Center vertically */
-}
+    .our-story {
+      display: flex;
+      align-items: center;
 
-.story-image {
-  width: 50%; /* Adjust width as needed */
-  height: 50%; /* Maintain aspect ratio */
-}
+      .our-story-image {
+        width: 600px;
+        height: 600px;
+        margin-right: 200px;
+        margin-left: 200px;
+      }
+    }
 
-.section-heading {
-  font-weight: bold;
-  color: #000;
-  font-size: 34px;
-  margin-bottom: 30px;
-  padding-top: 0px;
-  text-align: center;
-}
+    .section-heading {
+      font-weight: bold;
+      color: #000;
+      font-size: 34px;
+      margin-bottom: 30px;
+      paddingtop: 0px;
+      text-align: center;
+    }
 
-.paragraph {
-  margin: 20px;
-  margin-bottom: 30px; /* Adjust as needed */
-  font-size: 26px;
-}
+    .paragraph {
+      margin: 20px;
+      margin-bottom: 300px;
+      font-size: 26px;
+    }
 
-.closing-paragraph {
-  margin-top: 30px;
-  font-weight: bold;
+    .philosophy-image {
+      width: 500px;
+      height: 500px;
+      margin-right: 200px;
+      margin-left: 200px;
+    }
+  }
 }

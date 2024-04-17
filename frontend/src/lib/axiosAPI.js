@@ -38,7 +38,6 @@ export const adminCreateProduct = async (userInfo, formData) => {
     const data = await response.json(); // Assuming a JSON response
     return data;
   } catch (error) {
-    console.log("some");
     console.error("Error creating product:", error);
 
     throw error;
