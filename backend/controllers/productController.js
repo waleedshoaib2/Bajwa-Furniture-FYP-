@@ -126,3 +126,21 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ error: "Error deleting product" });
   }
 };
+export const getProductsByProductNos = async (req, res) => {
+  try {
+    console.log("inhere");
+    console.log(req.body);
+    const productNos = req.body.results;
+    console.log(productNos);
+    const products = await Product.find({ productno: { $in: productNos } })
+      .populate("category")
+      .exec();
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Products not found" });
+    }
+    res.json({ products });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+};

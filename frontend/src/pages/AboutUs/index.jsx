@@ -191,41 +191,42 @@ const styles = {
     fontWeight: "bold", // Increased font weight
     marginBottom: "30px",
 
-  section: {
-    display: "flex",
-    paddingBottom: "30px",
-    marginBottom: "30px",
-    border: "none", // Remove border
-  },
-  sectionHeading: {
-    fontWeight: "bold",
-    color: "#000",
-    fontSize: "34px",
-    marginBottom: "30px",
-    paddingtop: "0px", // Remove padding
-    textAlign: "center",
-  },
-  content: {
-    lineHeight: "1.6",
-  },
-  paragraph: {
-    margin: "20px",
-    marginBottom: "300px",
-    fontSize: "26px",
-  },
-  list: {
-    fontSize: "26px",
-    paddingLeft: "20px",
-    marginBottom: "20px",
-  },
-  highlight: {
-    color: "#f50057",
-    fontWeight: "bold",
-  },
+    section: {
+      display: "flex",
+      paddingBottom: "30px",
+      marginBottom: "30px",
+      border: "none", // Remove border
+    },
+    sectionHeading: {
+      fontWeight: "bold",
+      color: "#000",
+      fontSize: "34px",
+      marginBottom: "30px",
+      paddingtop: "0px", // Remove padding
+      textAlign: "center",
+    },
+    content: {
+      lineHeight: "1.6",
+    },
+    paragraph: {
+      margin: "20px",
+      marginBottom: "300px",
+      fontSize: "26px",
+    },
+    list: {
+      fontSize: "26px",
+      paddingLeft: "20px",
+      marginBottom: "20px",
+    },
+    highlight: {
+      color: "#f50057",
+      fontWeight: "bold",
+    },
 
-  ourstory: {
-    display: "flex",
-    alignitems: "center",
+    ourstory: {
+      display: "flex",
+      alignitems: "center",
+    },
   },
 };
 
