@@ -13,12 +13,12 @@ export default function ProductsPrimary({ product }) {
     >
       <LazyLoadImage
         width="100%"
-        height="75%"
+        height="90%"
         src={product.images}
         placeholderSrc={product.image}
       />
-      <h1>{product.name}</h1>
-      {/* <Ratings product={product} /> */}
+      <h2>{product.name}</h2>
+
       <h2>Rupees {product.price}</h2>
     </div>
   );

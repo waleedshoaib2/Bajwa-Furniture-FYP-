@@ -30,23 +30,23 @@ export default function AllProducts() {
         </div>
       ) : (
         <div className="allproducts__title">
-          <Meta title="All Products" />
-          <h1>All Products</h1>
           <LazyLoadImage
             wrapperClassName="allproducts__title__image"
             alt={"recommend_product"}
-            effect="blur"
-            src="https://d2c0vv5h4nuw6w.cloudfront.net/images/b670bb1fd0ff3f29.jpg"
+            src="https://junohire.com/wp-content/uploads/2021/04/Juno-30.03.21-6-scaled.jpg"
             placeholderSrc="https://d2c0vv5h4nuw6w.cloudfront.net/images/b670bb1fd0ff3f29.jpg"
           />
+          <Meta title="All Products" />
+          <h1>Products</h1>
         </div>
       )}
-      <Sort />
       <div className="allproducts__listings">
         <div className="allproducts__leftPanelFilter__container">
           <Filter />
         </div>
-        <Listing products={productListInfo.products} />
+        <div className="allproducts__products">
+          <Listing products={productListInfo.products} />
+        </div>
       </div>
       <Paginate page={productListInfo.page} pages={productListInfo.pages} />
     </div>

@@ -1,0 +1,53 @@
+.about-us-container {
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.content {
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  display: flex;
+  flex-direction: row; /* Change to column layout */
+}
+
+.our-story {
+  display: flex;
+  flex-direction: row-reverse; /* Reverse the order of items */
+  align-items: center; /* Center vertically */
+}
+
+.story-image {
+  width: 50%; /* Adjust width as needed */
+  height: 50%; /* Maintain aspect ratio */
+}
+
+.section-heading {
+  font-weight: bold;
+  color: #000;
+  font-size: 34px;
+  margin-bottom: 30px;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.paragraph {
+  margin: 20px;
+  margin-bottom: 30px; /* Adjust as needed */
+  font-size: 26px;
+}
+
+.closing-paragraph {
+  margin-top: 30px;
+  font-weight: bold;
+}

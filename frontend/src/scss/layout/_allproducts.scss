@@ -10,8 +10,9 @@
 
 .allproducts__title {
   width: 100%;
-  height: 150px;
+  height: 100px;
   display: flex;
+  align-content: center;
 
   @include breakpoint("sm") {
     height: 250px;
@@ -32,8 +33,13 @@
     align-items: center;
     font-size: 2rem;
     font-weight: 300;
-    padding-left: 50px;
+
+    color: black;
+    background-color: burlywood;
+
     white-space: nowrap;
+    font-style: italic;
+    font-weight: 500;
 
     @include breakpoint("md") {
       font-size: 5rem;
@@ -47,7 +53,7 @@
   }
 
   &__image {
-    width: 60%;
+    width: 100%;
     height: 100%;
     z-index: -1;
   }
@@ -113,12 +119,11 @@
     display: flex;
     align-items: center;
     font-size: 2rem;
-    border-bottom: 1px solid #cccccc;
   }
 }
 
 .allproducts__products {
-  padding: 0px 20px;
+  padding: 0px 10px;
   flex-grow: 1;
 
   &__grid {
@@ -150,10 +155,48 @@
   height: 100px;
   padding-left: 20px;
   margin-top: 20px;
-  // background-color: gainsboro;
+
   div {
     margin-top: 20px;
   }
+}
+
+.productCard_primary {
+  position: relative; /* Ensure relative positioning for absolute elements */
+  width: 100%; /* Set width to 100% */
+  height: 300px; /* Set a default height for the container */
+
+  @media (min-width: 768px) {
+    /* Adjust for small screens */
+    height: 350px; /* Increase height for small screens */
+  }
+
+  @media (min-width: 992px) {
+    /* Adjust for medium screens */
+    height: 400px; /* Increase height for medium screens */
+  }
+
+  @media (min-width: 1200px) {
+    /* Adjust for large screens */
+    height: 450px; /* Increase height for large screens */
+  }
+
+  .productCard_primary__image {
+    width: 100%; /* Ensure image fills container width */
+    height: 100%; /* Ensure image fills container height */
+    object-fit: cover; /* Ensure image covers the container */
+  }
+
+  h1,
+  h2 {
+    font-weight: bold;
+    font-style: italic;
+    text-align: left; /* Center text */
+  }
+}
+.allproducts__leftPanelFilter__container {
+  margin-top: 0px;
+  background-color: burlywood; /* Add margin-bottom to create space */
 }
 
 // @include breakpoints.breakpoint(tablet) {
