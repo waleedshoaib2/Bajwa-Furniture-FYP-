@@ -30,29 +30,59 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ error: "Error creating product" });
   }
 };
+
 export const getProductsCustomer = async (req, res) => {
-  let keyword = {};
+  let filterKeyword = [{}];
 
-  console.log("it does send a request", req.query.search);
-
-  if (req.query.search && req.query.search !== "null") {
-    const searchTerm = req.query.search;
-    keyword = {
-      $or: [
-        { name: { $regex: searchTerm, $options: "i" } },
-        { description: { $regex: searchTerm, $options: "i" } },
-        { material: { $regex: searchTerm, $options: "i" } },
-        { color: { $regex: searchTerm, $options: "i" } },
-      ],
-    };
+  if (req.query.minPriceQuery && req.query.minPriceQuery !== "null") {
+    filterKeyword.push({
+      price: { $gt: parseInt(req.query.minPriceQuery) * 100 },
+    });
+  }
+  if (req.query.maxPriceQuery && req.query.maxPriceQuery !== "null") {
+    filterKeyword.push({
+      price: { $lt: parseInt(req.query.maxPriceQuery) * 100 },
+    });
   }
 
+  const keyword =
+    req.query.search && req.query.search !== "null"
+      ? [
+          {
+            name: {
+              $regex: req.query.search,
+              $options: "i",
+            },
+          },
+          {
+            category: {
+              $regex: req.query.search,
+              $options: "i",
+            },
+          },
+          {
+            brand: {
+              $regex: req.query.search,
+              $options: "i",
+            },
+          },
+          {
+            description: {
+              $regex: req.query.search,
+              $options: "i",
+            },
+          },
+        ]
+      : [{}];
+
   try {
-    const products = await Product.find(keyword);
+    let products = await Product.find({
+      $and: [{ $or: keyword }, { $and: filterKeyword }],
+    });
     console.log(products);
+
     res.json({ products });
-  } catch (error) {
-    console.error(error);
+  } catch {
     res.status(404).json({ message: "Products not found" });
   }
 };

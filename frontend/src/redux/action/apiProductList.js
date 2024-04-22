@@ -6,7 +6,12 @@ import {
 } from "../slices/productListSlice";
 import axios from "axios";
 
-export const getProductList = async (dispatch, search = "") => {
+export const getProductList = async (
+  dispatch,
+  search = "",
+  minPriceQuery = "",
+  maxPriceQuery = ""
+) => {
   if (search === null) {
     search = "";
   }
@@ -17,7 +22,9 @@ export const getProductList = async (dispatch, search = "") => {
 
   try {
     const result = await axios.get(
-      `http://localhost:4000/product/CustomerGetProduct/?search=${search}`
+      `http://localhost:4000/product/CustomerGetProduct/?search=${search}` +
+        `minPriceQuery=${minPriceQuery}&` +
+        `maxPriceQuery=${maxPriceQuery}`
     );
 
     dispatch(updateProductSuccess(result.data));

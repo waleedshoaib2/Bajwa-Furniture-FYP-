@@ -41,7 +41,7 @@ import AdminGetBlogList from "./pages/AdminBlogList";
 import "aos/dist/aos.css";
 import EditPost from "./pages/AdminEditBlog";
 import CustomerBlogList from "./pages/CustomerBlogList";
-
+import VisualSearchShop from "./pages/VisualSearch";
 import AdminChat from "./pages/AdminChat";
 import ChatRoom from "./pages/ChatRoom";
 import ChatList from "./pages/CustomerChat";
@@ -71,7 +71,7 @@ function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/shop" element={<AllProducts />} />
-          <Route path="/visualsearchshop" element={<AllProducts />} />
+          <Route path="/visualsearchshop" element={<VisualSearchShop />} />
 
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<ShoppingCart />} />

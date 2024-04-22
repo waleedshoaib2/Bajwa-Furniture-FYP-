@@ -9,14 +9,15 @@ export default function SearchModal({ openModal, setOpenModal }) {
   const [file, setFile] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
-    if (searchResults.length > 0) {
-      setOpenModal(false);
+    if (searchResults && searchResults.length > 0) {
       console.log("the data is of ", searchResults);
+      setOpenModal(false);
       navigate("/visualsearchshop", {
         state: { visualproduct: searchResults },
       });
     }
   }, [searchResults, navigate]);
+
   const handleSearchInput = (e) => {
     e.preventDefault();
     setOpenModal(false);
@@ -84,7 +85,7 @@ export default function SearchModal({ openModal, setOpenModal }) {
             <h1>Popular Search</h1>
             <div className="search-modal__popular-search">
               <div onClick={() => handleRedirect("/shop?search=chair")}>
-                Chair
+                Chair3
               </div>
               <div onClick={() => handleRedirect("/shop?search=lamp")}>
                 Lamp
@@ -101,7 +102,7 @@ export default function SearchModal({ openModal, setOpenModal }) {
             <input type="file" onChange={handleFileChange} />
             <button onClick={handleUploadImage}>Upload Image</button>
           </div>
-          {/* Display search results */}
+
           <div>
             <h2>Search Results:</h2>
             <ul>

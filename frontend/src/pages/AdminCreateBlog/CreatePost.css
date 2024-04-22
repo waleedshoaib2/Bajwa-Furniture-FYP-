@@ -1,23 +1,29 @@
 .create-post-container {
-  max-width: 1200px;
-  height: 800px;
+  width: 1000px;
   margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 60px;
-  background-color: #f9f9f9;
+  padding: 20px;
+  background-color: hsl(0, 75%, 89%);
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.AI-button {
+  border-color: #fff;
+  border: none;
+}
+.AI-button::hover {
+  color: #007bff;
+}
 .create-post-form {
   display: grid;
   gap: 20px;
+  overflow: auto; /* Allow scroll when content exceeds height */
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
+  font-size: 22px;
 }
 
 label {
@@ -31,11 +37,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-}
-
-.react-quill {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 100%; /* Fill container */
 }
 
 .publish-button {
