@@ -33,7 +33,7 @@ export default function AllProducts() {
           <LazyLoadImage
             wrapperClassName="allproducts__title__image"
             alt={"recommend_product"}
-            src="https://junohire.com/wp-content/uploads/2021/04/Juno-30.03.21-6-scaled.jpg"
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             placeholderSrc="https://d2c0vv5h4nuw6w.cloudfront.net/images/b670bb1fd0ff3f29.jpg"
           />
           <Meta title="All Products" />

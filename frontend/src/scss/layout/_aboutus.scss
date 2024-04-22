@@ -21,16 +21,18 @@
 
   .section {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .our-story {
       display: flex;
       align-items: center;
 
       .our-story-image {
-        width: 600px;
-        height: 600px;
-        margin-right: 200px;
-        margin-left: 200px;
+        width: 50px; /* Adjust width */
+        height: 50px; /* Adjust height */
+        margin-right: 50px; /* Adjust margins */
+        margin-left: 50px; /* Adjust margins */
       }
     }
 
@@ -39,7 +41,6 @@
       color: #000;
       font-size: 34px;
       margin-bottom: 30px;
-      paddingtop: 0px;
       text-align: center;
     }
 
@@ -50,10 +51,18 @@
     }
 
     .philosophy-image {
-      width: 500px;
-      height: 500px;
-      margin-right: 200px;
-      margin-left: 200px;
+      width: 50px; /* Adjust width */
+      height: 50px; /* Adjust height */
+      margin-right: 50px; /* Adjust margins */
+      margin-left: 50px; /* Adjust margins */
+      order: 1; // Move the image to the top of the section
+    }
+  }
+
+  .section:nth-child(even) {
+    flex-direction: row-reverse; // Reverse the direction of even sections
+    .philosophy-image {
+      order: -1; // Move the image to the end of the section
     }
   }
 }

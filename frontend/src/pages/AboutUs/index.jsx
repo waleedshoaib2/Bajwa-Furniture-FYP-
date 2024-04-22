@@ -11,11 +11,6 @@ const AboutUs = () => {
       <div className="content">
         <div className="section">
           <div className="our-story">
-            <img
-              src="https://assets.vogue.com/photos/66070733f43df49e80c7c0c5/1:1/w_1416,h_1416,c_limit/outdoor%20furniture%20site.jpeg"
-              alt=""
-              className="our-story-image"
-            />
             <div>
               <h2 className="section-heading">Our Story</h2>
               <p className="paragraph">
@@ -46,11 +41,6 @@ const AboutUs = () => {
               offer a curated selection to suit every taste and budget.
             </p>
           </div>
-          <img
-            src="https://akamai-scene7.grandinroad.com/is/image/frontgate/outdoor_shop_the_look?$wgih$"
-            alt=""
-            className="philosophy-image"
-          />
         </div>
         {/* More sections... */}
       </div>
