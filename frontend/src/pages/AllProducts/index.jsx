@@ -13,11 +13,14 @@ export default function AllProducts() {
   const productList = useSelector((state) => state.productList);
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search");
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
+  console.log("the world is : ", searchParams.get("maxPrice"));
 
   const { productListInfo } = productList;
 
   React.useEffect(() => {
-    getProductList(dispatch, searchQuery);
+    getProductList(dispatch, searchQuery, minPrice, maxPrice);
   }, [dispatch, searchQuery]);
 
   return (

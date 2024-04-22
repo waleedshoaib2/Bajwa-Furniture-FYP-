@@ -18,7 +18,7 @@ export default function ProductsPrimary({ product }) {
         placeholderSrc={product.image}
       />
       <h1>{product.name}</h1>
-      {/* <Ratings product={product} /> */}
+
       <h2>Rupees {product.price}</h2>
     </div>
   );
