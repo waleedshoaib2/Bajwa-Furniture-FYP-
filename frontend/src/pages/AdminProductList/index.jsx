@@ -5,6 +5,7 @@ import { adminGetProducts, adminDeleteProduct } from "../../lib/axiosAPI";
 import { logout } from "../../redux/action/apiUserAction";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
+import AdminSidebar from "../AdminDashboard/AdminSidebar";
 
 export default function AdminProductList() {
   const dispatch = useDispatch();
@@ -59,58 +60,65 @@ export default function AdminProductList() {
   }, [getAllProducts]);
 
   return (
-    <div className="admin-list">
-      <DisplayPending pending={pending} />
-      <div className="admin-list__container">
-        {error ? <Alert severity="error">{error}</Alert> : null}
-        <div
-          className="admin-add-button"
-          onClick={() => {
-            window.scrollTo(0, 0);
-            navigate("/admin/createproduct");
-          }}
-        >
-          Add New Product
+    <>
+      <div style={{ display: "flex" }}>
+        <div>
+          <AdminSidebar />
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Category</th>
-              <th scope="col">Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => {
-              return (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>$ {product.price}</td>
-                  <td>{product.category}</td>
-                  <td>
-                    <img
-                      src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"
-                      alt="edit_icon"
-                      onClick={() => {
-                        window.scrollTo(0, 0);
-                        navigate(`/admin/editproduct/${product._id}`);
-                      }}
-                    />
-                    <img
-                      onClick={() => handleDelete(product._id)}
-                      src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/delete.png"
-                      alt="edit_icon"
-                    />
-                  </td>
+        <div className="admin-list">
+          <DisplayPending pending={pending} />
+          <div className="admin-list__container">
+            {error ? <Alert severity="error">{error}</Alert> : null}
+            <div
+              className="admin-add-button"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/admin/createproduct");
+              }}
+            >
+              Add New Product
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Edit/Delete</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {products.map((product) => {
+                  return (
+                    <tr key={product._id}>
+                      <td>{product._id}</td>
+                      <td>{product.name}</td>
+                      <td>$ {product.price}</td>
+                      <td>{product.category}</td>
+                      <td>
+                        <img
+                          src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"
+                          alt="edit_icon"
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            navigate(`/admin/editproduct/${product._id}`);
+                          }}
+                        />
+                        <img
+                          onClick={() => handleDelete(product._id)}
+                          src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/delete.png"
+                          alt="edit_icon"
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

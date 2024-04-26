@@ -1,7 +1,7 @@
 .admin-sidebar {
   background-color: black;
   color: #fff;
-  width: 200px;
+  width: 300px; /* Increase width to 250px or any desired width */
   height: 100%;
   padding: 50px;
 }
@@ -27,7 +27,7 @@
   font-size: medium;
   font-weight: 500;
   color: #fff;
-  background-color: #000;
+  background-color: black;
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
   display: flex;
@@ -37,4 +37,8 @@
 
 .black-button:hover {
   background-color: #333;
+}
+
+.black-button > svg {
+  margin-right: 10px; /* Add some space between the icon and the text */
 }

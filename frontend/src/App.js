@@ -46,6 +46,7 @@ import AdminChat from "./pages/AdminChat";
 import ChatRoom from "./pages/ChatRoom";
 import ChatList from "./pages/CustomerChat";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminSidebar from "./pages/AdminDashboard/AdminSidebar";
 
 function App() {
   React.useEffect(() => {
@@ -57,6 +58,7 @@ function App() {
       <BrowserRouter>
         <Meta />
         <Header />
+
         <Routes>
           <Route path="/login" element={<Login />} />
 
