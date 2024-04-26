@@ -30,29 +30,44 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ error: "Error creating product" });
   }
 };
+
 export const getProductsCustomer = async (req, res) => {
-  let keyword = {};
-
-  console.log("it does send a request", req.query.search);
-
-  if (req.query.search && req.query.search !== "null") {
-    const searchTerm = req.query.search;
-    keyword = {
-      $or: [
-        { name: { $regex: searchTerm, $options: "i" } },
-        { description: { $regex: searchTerm, $options: "i" } },
-        { material: { $regex: searchTerm, $options: "i" } },
-        { color: { $regex: searchTerm, $options: "i" } },
-      ],
-    };
+  let filterKeyword = [];
+  console.log(req.queryminPriceQuery === undefined);
+  if (req.query.minPriceQuery && req.query.minPriceQuery !== "null") {
+    console.log("in here");
+    filterKeyword.push({
+      price: { $gt: parseInt(req.query.minPriceQuery) * 100 },
+    });
+  }
+  if (req.query.maxPriceQuery && req.query.maxPriceQuery !== "null") {
+    filterKeyword.push({
+      price: { $lt: parseInt(req.query.maxPriceQuery) * 100 },
+    });
   }
 
+  const keyword =
+    req.query.search && req.query.search !== "null"
+      ? [
+          { name: { $regex: new RegExp(req.query.search, "i") } },
+          { category: { $regex: new RegExp(req.query.search, "i") } },
+          { brand: { $regex: new RegExp(req.query.search, "i") } },
+          { description: { $regex: new RegExp(req.query.search, "i") } },
+        ]
+      : [];
+
   try {
-    const products = await Product.find(keyword);
-    console.log(products);
+    console.log(filterKeyword);
+    console.log(keyword);
+    let products = await Product.find({
+      $and: [{ $in: keyword }, { $and: filterKeyword }],
+    });
+    console.log("searching for products", products);
+
     res.json({ products });
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    console.log("error has occured");
     res.status(404).json({ message: "Products not found" });
   }
 };
@@ -124,5 +139,23 @@ export const deleteProduct = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error deleting product" });
+  }
+};
+export const getProductsByProductNos = async (req, res) => {
+  try {
+    console.log("inhere");
+    console.log(req.body);
+    const productNos = req.body.results;
+    console.log(productNos);
+    const products = await Product.find({ productno: { $in: productNos } })
+      .populate("category")
+      .exec();
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Products not found" });
+    }
+    res.json({ products });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
   }
 };

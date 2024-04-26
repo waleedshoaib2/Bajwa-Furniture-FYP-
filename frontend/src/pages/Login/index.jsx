@@ -8,11 +8,8 @@ import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
 import CustomDivider from "../../components/CustomDivider";
 
-// Import your login action
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// Your other imports and code...
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -34,11 +31,17 @@ export default function LoginPage() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     if (userInfo) {
-      navigate(`/${redirect}`);
-      toast.success("Login successful!"); // Display success toast
+      console.log(userInfo);
+      if (userInfo.isAdmin) {
+        navigate("/dashboard");
+      } else {
+        navigate(`/${redirect}`);
+        toast.success("Login successful!");
+      }
     }
+
     if (error) {
-      toast.error(errorMessage); // Display error toast
+      toast.error(errorMessage);
     }
   }, [navigate, userInfo, error, errorMessage, redirect]);
 
@@ -48,59 +51,44 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="auth">
-      <Meta title="Login" />
-      <DisplayPending pending={pending} />
-      <form className="auth__container" onSubmit={handleLogin}>
-        {error ? <Alert severity="error">{errorMessage}</Alert> : null}
-        <div className="auth__title">Welcome back!</div>
-        <div className="auth__input__container">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="auth__input__container">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button className="auth-button " type="submit">
-          Log In
-        </button>
-        <CustomDivider text={"OR"} />
-
-        <h1 className="auth__navigation">
-          Need an account?{" "}
-          <span onClick={(e) => navigate(`/register?redirect=${redirect}`)}>
-            Register
-          </span>
-        </h1>
-        <h1 className="auth__legal">
-          By Logging into QuickChat you agree to our{" "}
-          <span
-            className="color-blue-600 cursor-pointer"
-            onClick={() => navigate("/legal")}
-          >
-            Terms of Services
-          </span>{" "}
-          and{" "}
-          <span
-            className="color-blue-600 cursor-pointer"
-            onClick={() => navigate("/privacy")}
-          >
-            Privacy Policy.
-          </span>
-        </h1>
-      </form>
-      <ToastContainer /> {/* Toast container */}
+    <div className="login">
+      <div className="auth">
+        <Meta title="Login" />
+        <DisplayPending pending={pending} />
+        <form className="auth__container" onSubmit={handleLogin}>
+          {error ? <Alert severity="error">{errorMessage}</Alert> : null}
+          <div className="auth__title">Welcome back!</div>
+          <div className="auth__input__container">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="auth__input__container">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="auth-button" type="submit">
+            Log In
+          </button>
+          <CustomDivider text={"OR"} />
+          <h1 className="auth__navigation">
+            Need an account?{" "}
+            <span onClick={(e) => navigate(`/register?redirect=${redirect}`)}>
+              Register
+            </span>
+          </h1>
+        </form>
+        <ToastContainer /> {/* Toast container */}
+      </div>
     </div>
   );
 }

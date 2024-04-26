@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalBody from "./ModalBody";
 import axios from "axios";
 
 export default function SearchModal({ openModal, setOpenModal }) {
   const navigate = useNavigate();
-  const [searchProduct, setSearch] = React.useState("");
-  const [file, setFile] = React.useState(null);
+  const [searchProduct, setSearchProduct] = useState("");
+  const [file, setFile] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
+  useEffect(() => {
+    if (searchResults && searchResults.length > 0) {
+      console.log("the data is of ", searchResults);
+      setOpenModal(false);
+      navigate("/visualsearchshop", {
+        state: { visualproduct: searchResults },
+      });
+    }
+  }, [searchResults, navigate]);
 
-  const handleSearchInput = async (e) => {
+  const handleSearchInput = (e) => {
     e.preventDefault();
     setOpenModal(false);
     if (searchProduct) {
+      console.log(searchProduct);
       navigate(`/shop?search=${searchProduct}`);
     }
   };
@@ -41,8 +52,14 @@ export default function SearchModal({ openModal, setOpenModal }) {
           },
         }
       );
-      console.log(response.data);
-      // Handle response data as needed
+
+      const response2 = await axios.post(
+        "http://localhost:4000/product/getProductsByProductNos",
+        response.data
+      );
+
+      console.log("the result is ", response2.data);
+      setSearchResults(response2.data.products);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -55,7 +72,7 @@ export default function SearchModal({ openModal, setOpenModal }) {
           <form className="search-modal__header" onSubmit={handleSearchInput}>
             <input
               value={searchProduct}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => setSearchProduct(e.target.value)}
             />
             <img
               className="icon-medium margin-inline-end-36"
@@ -68,7 +85,7 @@ export default function SearchModal({ openModal, setOpenModal }) {
             <h1>Popular Search</h1>
             <div className="search-modal__popular-search">
               <div onClick={() => handleRedirect("/shop?search=chair")}>
-                Chair
+                Chair3
               </div>
               <div onClick={() => handleRedirect("/shop?search=lamp")}>
                 Lamp
@@ -84,6 +101,15 @@ export default function SearchModal({ openModal, setOpenModal }) {
           <div>
             <input type="file" onChange={handleFileChange} />
             <button onClick={handleUploadImage}>Upload Image</button>
+          </div>
+
+          <div>
+            <h2>Search Results:</h2>
+            <ul>
+              {searchResults.map((product) => (
+                <li key={product._id}>{product.name}</li>
+              ))}
+            </ul>
           </div>
         </>
       </ModalBody>

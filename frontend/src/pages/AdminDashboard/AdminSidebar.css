@@ -1,0 +1,44 @@
+.admin-sidebar {
+  background-color: black;
+  color: #fff;
+  width: 300px; /* Increase width to 250px or any desired width */
+  height: 100%;
+  padding: 50px;
+}
+
+.admin-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-sidebar ul li a {
+  text-decoration: none; /* Remove underline from links */
+}
+
+.admin-sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.black-button {
+  height: 55px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  font-size: medium;
+  font-weight: 500;
+  color: #fff;
+  background-color: black;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black-button:hover {
+  background-color: #333;
+}
+
+.black-button > svg {
+  margin-right: 10px; /* Add some space between the icon and the text */
+}

@@ -41,10 +41,12 @@ import AdminGetBlogList from "./pages/AdminBlogList";
 import "aos/dist/aos.css";
 import EditPost from "./pages/AdminEditBlog";
 import CustomerBlogList from "./pages/CustomerBlogList";
-
+import VisualSearchShop from "./pages/VisualSearch";
 import AdminChat from "./pages/AdminChat";
 import ChatRoom from "./pages/ChatRoom";
 import ChatList from "./pages/CustomerChat";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminSidebar from "./pages/AdminDashboard/AdminSidebar";
 
 function App() {
   React.useEffect(() => {
@@ -56,8 +58,10 @@ function App() {
       <BrowserRouter>
         <Meta />
         <Header />
+
         <Routes>
           <Route path="/login" element={<Login />} />
+
           <Route path="/register" element={<Signup />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/createpost" element={<CreatePost />} />
@@ -71,6 +75,7 @@ function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/shop" element={<AllProducts />} />
+          <Route path="/visualsearchshop" element={<VisualSearchShop />} />
 
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<ShoppingCart />} />
@@ -89,6 +94,7 @@ function App() {
             <Route path="/admin/userlist" element={<AdminUserList />} />
             <Route path="/admin/editUser/:id" element={<AdminEditUser />} />
             <Route path="/admin/productlist/" element={<AdminProductList />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
             <Route
               path="/admin/categorylist/"
               element={<AdminCategoryList />}

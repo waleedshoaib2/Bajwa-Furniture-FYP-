@@ -6,6 +6,7 @@ import {
   getAllProducts,
   deleteProduct,
   getProductsCustomer,
+  getProductsByProductNos,
 } from "../controllers/productController.js";
 import upload from "../middlewares/uploadMiddleware.js"; // Import upload
 import { checkAuth, isAdmin } from "../middlewares/authMiddleware.js";
@@ -24,5 +25,6 @@ router.get("/getproduct/:id", getProductById);
 router.put("/updateproduct/:id", upload.single("image"), updateProduct);
 router.get("/getallproduct", getAllProducts);
 router.delete("/delete/:id", deleteProduct);
+router.post("/getProductsByProductNos", getProductsByProductNos);
 
 export default router;
