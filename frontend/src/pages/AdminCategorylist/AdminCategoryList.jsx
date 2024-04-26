@@ -6,6 +6,7 @@ import { logout } from "../../redux/action/apiUserAction";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
 import { adminGetCategory } from "../../lib/axiosAPI.js";
+import AdminSidebar from "../AdminDashboard/AdminSidebar.jsx";
 
 export default function AdminCategoryList() {
   const dispatch = useDispatch();
@@ -59,60 +60,67 @@ export default function AdminCategoryList() {
   }, [getAllCategories]);
 
   return (
-    <div className="admin-list">
-      <DisplayPending pending={pending} />
-      <div className="admin-list__container">
-        {error ? <Alert severity="error">{error}</Alert> : null}
-        <div
-          className="admin-add-button"
-          onClick={() => {
-            window.scrollTo(0, 0);
-            navigate("/admin/createcategory");
-          }}
-        >
-          Add New Category
+    <>
+      <div style={{ display: "flex" }}>
+        <div>
+          <AdminSidebar />
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {categories?.map((category) => {
-              // Truncate the description if it's too long
-              const truncatedDescription =
-                category.description.length > 50
-                  ? category.description.substring(0, 50) + "..."
-                  : category.description;
-
-              return (
-                <tr key={category._id}>
-                  <td>{category.name}</td>
-                  <td>{truncatedDescription}</td>
-                  <td>
-                    <img
-                      src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"
-                      alt="edit_icon"
-                      onClick={() => {
-                        window.scrollTo(0, 0);
-                        navigate(`/admin/editcategory/${category._id}`);
-                      }}
-                    />
-                    <img
-                      onClick={() => handleDelete(category._id)}
-                      src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/delete.png"
-                      alt="edit_icon"
-                    />
-                  </td>
+        <div className="admin-list">
+          <DisplayPending pending={pending} />
+          <div className="admin-list__container">
+            {error ? <Alert severity="error">{error}</Alert> : null}
+            <div
+              className="admin-add-button"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/admin/createcategory");
+              }}
+            >
+              Add New Category
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Edit/Delete</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {categories?.map((category) => {
+                  // Truncate the description if it's too long
+                  const truncatedDescription =
+                    category.description.length > 50
+                      ? category.description.substring(0, 50) + "..."
+                      : category.description;
+
+                  return (
+                    <tr key={category._id}>
+                      <td>{category.name}</td>
+                      <td>{truncatedDescription}</td>
+                      <td>
+                        <img
+                          src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"
+                          alt="edit_icon"
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            navigate(`/admin/editcategory/${category._id}`);
+                          }}
+                        />
+                        <img
+                          onClick={() => handleDelete(category._id)}
+                          src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/delete.png"
+                          alt="edit_icon"
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

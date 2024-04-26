@@ -7,6 +7,7 @@ import Paginate from "../../components/Paginate/index.jsx";
 import { useSearchParams } from "react-router-dom";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
+import AdminSidebar from "../AdminDashboard/AdminSidebar.jsx";
 
 export default function AdminUserList() {
   const dispatch = useDispatch();
@@ -63,54 +64,62 @@ export default function AdminUserList() {
   };
 
   return (
-    <div className="admin-list">
-      <DisplayPending pending={pending} />
-      <div className="admin-list__container">
-        {error ? <Alert severity="error">{error}</Alert> : null}
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Admin</th>
-              <th scope="col">Edit/Delete</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {users.users?.map((user) => {
-              return (
-                <tr key={user._id}>
-                  <td>{user._id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    {user.isAdmin ? (
-                      <span className="color-green-500">Yes</span>
-                    ) : (
-                      <span className="color-red-500">No</span>
-                    )}
-                  </td>
-                  <td>
-                    <img
-                      src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"
-                      alt="edit_icon"
-                      onClick={() => navigate(`/admin/editUser/${user._id}`)}
-                    />
-                    <img
-                      onClick={() => handleDelete(user._id)}
-                      src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/delete.png"
-                      alt="edit_icon"
-                    />
-                  </td>
+    <>
+      <div style={{ display: "flex" }}>
+        <div>
+          <AdminSidebar />
+        </div>
+        <div className="admin-list">
+          <DisplayPending pending={pending} />
+          <div className="admin-list__container">
+            {error ? <Alert severity="error">{error}</Alert> : null}
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Admin</th>
+                  <th scope="col">Edit/Delete</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <Paginate page={users.page} pages={users.pages} />
+              </thead>
+              <tbody>
+                {users.users?.map((user) => {
+                  return (
+                    <tr key={user._id}>
+                      <td>{user._id}</td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        {user.isAdmin ? (
+                          <span style={{ color: "green" }}>Yes</span>
+                        ) : (
+                          <span style={{ color: "red" }}>No</span>
+                        )}
+                      </td>
+                      <td>
+                        <img
+                          src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/edit.png"
+                          alt="edit_icon"
+                          onClick={() =>
+                            navigate(`/admin/editUser/${user._id}`)
+                          }
+                        />
+                        <img
+                          onClick={() => handleDelete(user._id)}
+                          src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/delete.png"
+                          alt="edit_icon"
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Paginate page={users.page} pages={users.pages} />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
