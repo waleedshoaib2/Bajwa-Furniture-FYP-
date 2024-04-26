@@ -31,9 +31,15 @@ export default function LoginPage() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     if (userInfo) {
-      navigate(`/${redirect}`);
-      toast.success("Login successful!");
+      console.log(userInfo);
+      if (userInfo.isAdmin) {
+        navigate("/dashboard");
+      } else {
+        navigate(`/${redirect}`);
+        toast.success("Login successful!");
+      }
     }
+
     if (error) {
       toast.error(errorMessage);
     }

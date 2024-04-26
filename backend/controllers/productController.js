@@ -32,9 +32,10 @@ export const createProduct = async (req, res) => {
 };
 
 export const getProductsCustomer = async (req, res) => {
-  let filterKeyword = [{}];
-
+  let filterKeyword = [];
+  console.log(req.queryminPriceQuery === undefined);
   if (req.query.minPriceQuery && req.query.minPriceQuery !== "null") {
+    console.log("in here");
     filterKeyword.push({
       price: { $gt: parseInt(req.query.minPriceQuery) * 100 },
     });
@@ -48,41 +49,25 @@ export const getProductsCustomer = async (req, res) => {
   const keyword =
     req.query.search && req.query.search !== "null"
       ? [
-          {
-            name: {
-              $regex: req.query.search,
-              $options: "i",
-            },
-          },
-          {
-            category: {
-              $regex: req.query.search,
-              $options: "i",
-            },
-          },
-          {
-            brand: {
-              $regex: req.query.search,
-              $options: "i",
-            },
-          },
-          {
-            description: {
-              $regex: req.query.search,
-              $options: "i",
-            },
-          },
+          { name: { $regex: new RegExp(req.query.search, "i") } },
+          { category: { $regex: new RegExp(req.query.search, "i") } },
+          { brand: { $regex: new RegExp(req.query.search, "i") } },
+          { description: { $regex: new RegExp(req.query.search, "i") } },
         ]
-      : [{}];
+      : [];
 
   try {
+    console.log(filterKeyword);
+    console.log(keyword);
     let products = await Product.find({
-      $and: [{ $or: keyword }, { $and: filterKeyword }],
+      $and: [{ $in: keyword }, { $and: filterKeyword }],
     });
-    console.log(products);
+    console.log("searching for products", products);
 
     res.json({ products });
-  } catch {
+  } catch (error) {
+    console.log(error);
+    console.log("error has occured");
     res.status(404).json({ message: "Products not found" });
   }
 };

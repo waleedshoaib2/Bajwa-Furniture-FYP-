@@ -21,6 +21,11 @@ app.use(express.json());
 connectDb();
 app.use(passport.initialize());
 app.use(cors());
+app.get("/blog/:postId", (req, res) => {
+  // Fetch blog post data (replace with your database logic)
+  const postData = findPostById(req.params.postId);
+  res.render("blog-post.ejs", { post: postData });
+});
 
 app.use("/product", productRoutes);
 app.use("/user", userRoutes);
