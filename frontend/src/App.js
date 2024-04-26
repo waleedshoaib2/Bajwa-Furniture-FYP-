@@ -45,6 +45,7 @@ import VisualSearchShop from "./pages/VisualSearch";
 import AdminChat from "./pages/AdminChat";
 import ChatRoom from "./pages/ChatRoom";
 import ChatList from "./pages/CustomerChat";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   React.useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
+
           <Route path="/register" element={<Signup />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/createpost" element={<CreatePost />} />
@@ -90,6 +92,7 @@ function App() {
             <Route path="/admin/userlist" element={<AdminUserList />} />
             <Route path="/admin/editUser/:id" element={<AdminEditUser />} />
             <Route path="/admin/productlist/" element={<AdminProductList />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
             <Route
               path="/admin/categorylist/"
               element={<AdminCategoryList />}
