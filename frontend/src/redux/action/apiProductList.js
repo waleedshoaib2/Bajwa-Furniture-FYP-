@@ -23,8 +23,8 @@ export const getProductList = async (
   try {
     const result = await axios.get(
       `http://localhost:4000/product/CustomerGetProduct/?search=${search}` +
-        `minPriceQuery=${minPriceQuery}&` +
-        `maxPriceQuery=${maxPriceQuery}`
+        `&minPriceQuery=${minPriceQuery}` +
+        `&maxPriceQuery=${maxPriceQuery}`
     );
 
     dispatch(updateProductSuccess(result.data));
