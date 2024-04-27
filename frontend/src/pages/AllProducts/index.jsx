@@ -18,7 +18,8 @@ export default function AllProducts() {
   console.log("the world is : ", searchParams.get("maxPrice"));
 
   const { productListInfo } = productList;
-
+  console.log(searchQuery);
+  console.log(minPrice);
   React.useEffect(() => {
     getProductList(dispatch, searchQuery, minPrice, maxPrice);
   }, [dispatch, searchQuery]);
