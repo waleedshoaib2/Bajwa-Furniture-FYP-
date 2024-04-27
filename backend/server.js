@@ -7,6 +7,7 @@ import "./config/passport.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+
 import orderRoutes from "./routes/orderRoutes.js";
 import stripeRoutes from "./routes/stripeRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
@@ -16,11 +17,14 @@ import { Server } from "socket.io";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 
 const app = express();
-app.use(express.json());
 
 connectDb();
 app.use(passport.initialize());
+
 app.use(cors());
+app.use("/stripe", stripeRoutes);
+app.use(express.json());
+
 app.get("/blog/:postId", (req, res) => {
   // Fetch blog post data (replace with your database logic)
   const postData = findPostById(req.params.postId);
@@ -32,7 +36,7 @@ app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/reviews", reviewRoutes);
-app.use("/stripe", stripeRoutes);
+
 app.use("/api/orders", orderRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/blogs/", blogRoutes);

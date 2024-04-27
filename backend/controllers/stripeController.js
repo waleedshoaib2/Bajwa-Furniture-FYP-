@@ -1,13 +1,12 @@
 import Stripe from "stripe";
 import Order from "../models/orderModel.js";
 
-// @desc    Stripe order checkout
-// @route   POST /stripe/create-checkout-session
-// @access  Private
 const stripeCheckOut = async (req, res) => {
   try {
-    const { orderItems, customerID } = req.body;
-    console.log("ider ho: ", req.body);
+    const customerID = req.user._id.toString(); // Convert ObjectId to string
+
+    console.log("customer id ", customerID);
+    const { orderItems } = req.body;
 
     let metaDatas = {};
     let itemsList = [];
@@ -26,6 +25,8 @@ const stripeCheckOut = async (req, res) => {
       });
       metaDatas[`orderItems_${index}`] = JSON.stringify(item);
     });
+    console.log("ab idher");
+    console.log("The order items", orderItems);
 
     const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
     const session = await stripe.checkout.sessions.create({
@@ -41,16 +42,19 @@ const stripeCheckOut = async (req, res) => {
       shipping_options: [{ shipping_rate: "shr_1OspR4LeR7Utp3pwoc9w3PuZ" }],
       metadata: metaDatas,
     });
+    console.log("ab idher", session);
 
     res.status(201).json({ url: session.url });
   } catch (error) {
+    console.log("nhi idher ab idher");
+    console.log(error.message);
     res.status(error.statusCode).json({ message: error.message });
   }
 };
 
-// helper function to save order to MongoDB
 const saveOrder = async (paymentIntent) => {
   try {
+    console.log("payment Intent", paymentIntent);
     const {
       client_reference_id,
       shipping_details,
@@ -66,6 +70,7 @@ const saveOrder = async (paymentIntent) => {
     for (let i in metadata) {
       orderItemsArray.push(JSON.parse(metadata[i]));
     }
+    console.log("ither");
     const order = new Order({
       user: client_reference_id,
       orderItems: orderItemsArray,
@@ -94,9 +99,6 @@ const saveOrder = async (paymentIntent) => {
   }
 };
 
-// @desc    Stripe Webhook
-// @route   POST /stripe/webhook
-// @access  Public
 const stripeWebHook = async (request, response) => {
   const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
   const sig = request.headers["stripe-signature"];
@@ -118,6 +120,7 @@ const stripeWebHook = async (request, response) => {
     try {
       await saveOrder(paymentIntent);
     } catch (error) {
+      console.log(error.message);
       response.status(400).send(`Error Saving Order: ${error.message}`);
     }
   }
