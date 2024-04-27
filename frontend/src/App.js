@@ -46,18 +46,19 @@ import AdminChat from "./pages/AdminChat";
 import ChatRoom from "./pages/ChatRoom";
 import ChatList from "./pages/CustomerChat";
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminSidebar from "./pages/AdminDashboard/AdminSidebar";
-
+import { useSelector } from "react-redux";
+import AdminHeader from "./pages/AdminDashboard/AdminNavbar";
 function App() {
   React.useEffect(() => {
     AOS.init();
   }, []);
+  let { userInfo } = useSelector((state) => state.user);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Meta />
-        <Header />
+        {userInfo?.isAdmin ? null : <Header />}
 
         <Routes>
           <Route path="/login" element={<Login />} />

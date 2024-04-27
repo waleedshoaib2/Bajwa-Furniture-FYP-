@@ -65,9 +65,18 @@ const CreatePost = () => {
       }
 
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const ideas = response.text();
+      const result = await model.generateContent(
+        "can you generate a really good detailed seo optimized blog outline by using the following blog nature and keywords, make sure the prompt you generate is of high quality" +
+          prompt
+      );
+      const response = result.response.text();
+      console.log(response);
+      const blog = await model.generateContent(
+        "Write an engaging seo optimized blog using the following outline, the blog should be of around 1000 words" +
+          response
+      );
+      console.log(blog.response.text());
+      const ideas = blog.response.text();
       setContent(ideas);
     } catch (error) {
       console.error("Error generating prompt:", error);
@@ -84,7 +93,7 @@ const CreatePost = () => {
       try {
         // Now that we have the prompt, we can use it to generate the blog post
         // No need to generate content again, as we already have it from the prompt
-        await submitBlogPost(content); // Pass the generated content directly
+        // await submitBlogPost(content); // Pass the generated content directly
       } catch (error) {
         console.error("Error generating blog post:", error);
       } finally {
