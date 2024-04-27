@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalBody from "./ModalBody";
 import axios from "axios";
+import { FaUpload } from "react-icons/fa";
 
 export default function SearchModal({ openModal, setOpenModal }) {
   const navigate = useNavigate();
@@ -74,6 +75,20 @@ export default function SearchModal({ openModal, setOpenModal }) {
               value={searchProduct}
               onChange={(e) => setSearchProduct(e.target.value)}
             />
+            <div>
+              <div>
+                <input type="file" onChange={handleFileChange} />
+                <button onClick={handleUploadImage}>Upload Image</button>
+              </div>
+              {file && (
+                <div>
+                  {/* This div will be displayed only if an image is uploaded */}
+                  {/* Place your search button or any other content here */}
+                  <button>Search</button>
+                </div>
+              )}
+              <FaUpload />
+            </div>
             <img
               className="icon-medium margin-inline-end-36"
               src="https://d2c0vv5h4nuw6w.cloudfront.net/icons/close.png"
@@ -97,10 +112,6 @@ export default function SearchModal({ openModal, setOpenModal }) {
                 Table Decor
               </div>
             </div>
-          </div>
-          <div>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUploadImage}>Upload Image</button>
           </div>
 
           <div>
