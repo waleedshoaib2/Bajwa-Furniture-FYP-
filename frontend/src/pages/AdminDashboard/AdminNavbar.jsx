@@ -1,32 +1,31 @@
-// AdminNavbar.js
 import React from "react";
-import { FaCog, FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
-import "./AdminSidebar.css";
+import {
+  BsFillBellFill,
+  BsFillEnvelopeFill,
+  BsPersonCircle,
+  BsSearch,
+  BsJustify,
+} from "react-icons/bs";
 
-const AdminNavbar = () => {
+function AdminHeader({ OpenSidebar }) {
   return (
-    <div className="admin-header">
-      <div className="admin-header-left">
-        <div className="admin-logo">
-          {/* Your logo goes here */}
-          <img src="/path/to/your/logo.png" alt="Logo" />
-        </div>
-        <div className="admin-search">
-          <input type="text" placeholder="Search..." />
-          <button className="search-button">
-            <FaSearch />
-          </button>
-        </div>
+    <header className="admin-header">
+      <div className="logo">
+        <img src="./logo.svg" alt="logo" style={{ height: "100px" }} />
       </div>
-      <div className="admin-header-right">
-        <div className="admin-icons">
-          <FaCog />
-          <FaBell />
-          <FaUserCircle />
-        </div>
+      <div className="menu-icon">
+        <BsJustify className="icon" onClick={OpenSidebar} />
       </div>
-    </div>
+      <div className="header-left">
+        <BsSearch className="icon" />
+      </div>
+      <div className="header-right">
+        <BsFillBellFill className="icon" />
+        <BsFillEnvelopeFill className="icon" />
+        <BsPersonCircle className="icon" />
+      </div>
+    </header>
   );
-};
+}
 
-export default AdminNavbar;
+export default AdminHeader;

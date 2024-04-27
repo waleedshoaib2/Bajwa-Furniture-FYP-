@@ -9,7 +9,7 @@
   align-items: center;
   background-color: white;
   padding: 10px 20px;
-  width: 100%;
+  width: 50%;
 }
 
 .admin-header-left {
@@ -47,7 +47,8 @@
 .admin-sidebar {
   background-color: black;
   color: #fff;
-  padding: 20px;
+  padding: 60px;
+  width: 100%;
   flex: 1; /* Fill remaining space */
 }
 
@@ -87,3 +88,7 @@
 .black-button > svg {
   margin-right: 10px; /* Add some space between the icon and the text */
 }
+
+/* .admin-header {
+  height: 50px;
+} */
