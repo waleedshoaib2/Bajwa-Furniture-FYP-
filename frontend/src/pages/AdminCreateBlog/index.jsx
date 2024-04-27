@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import AIIcon from "./AIIcon";
 import "./CreatePost.css";
-import { marked } from "marked";
 import { useNavigate } from "react-router-dom";
 import EditorToolbar, { modules, formats } from "./toolbar";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -15,8 +14,9 @@ const CreatePost = () => {
   const [imageURL, setImageURL] = useState("");
   const navigate = useNavigate();
   const [isGeneratingIdeas, setIsGeneratingIdeas] = useState(false);
-  const [generatedIdeas, setGeneratedIdeas] = useState([]);
   const [formHeight, setFormHeight] = useState("auto");
+  const [promptText, setPromptText] = useState("");
+  const [selectedPrompt, setSelectedPrompt] = useState("");
   const genAI = new GoogleGenerativeAI(
     "AIzaSyCoZ7Oc7MxLX6K_2D55wJqZ7zqor9Awtt4"
   );
@@ -34,29 +34,77 @@ const CreatePost = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const markdownToHtml = (markdownContent) => {
-    return marked(markdownContent);
+  const handlePromptSelection = (e) => {
+    setSelectedPrompt(e.target.value);
   };
+
+  const generatePrompt = async () => {
+    try {
+      let prompt = promptText;
+      switch (selectedPrompt) {
+        case "Product Showcase":
+          prompt = `Introduce our flagship furniture product, highlighting its exquisite design, superior craftsmanship, and unique features. ${promptText}`;
+          break;
+        case "Interior Design Inspiration":
+          prompt = `Curate a collection of stunning interior design inspirations featuring our furniture pieces, tailored to different decor styles such as modern, minimalist, or eclectic. ${promptText}`;
+          break;
+        case "Sustainable Furniture Solutions":
+          prompt = `Educate our audience about sustainable furniture practices, showcasing eco-friendly materials, production methods, and our commitment to environmental responsibility. ${promptText}`;
+          break;
+        case "Furniture Care & Maintenance Guide":
+          prompt = `Offer expert advice on furniture care and maintenance, covering cleaning techniques, stain removal, and protection measures for different types of materials like wood, leather, and upholstery. ${promptText}`;
+          break;
+        case "Furniture Customization Ideas":
+          prompt = `Inspire creativity with a variety of furniture customization ideas, including DIY projects, color schemes, fabric choices, and decorative accents for a personalized touch. ${promptText}`;
+          break;
+        case "Furniture Buying Tips for First-Time Homeowners":
+          prompt = `Provide valuable insights and guidance for first-time homeowners navigating the process of furnishing their space, addressing budgeting, space planning, quality considerations, and versatile furniture choices. ${promptText}`;
+          break;
+        default:
+          break;
+      }
+
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const ideas = response.text();
+      setContent(ideas);
+    } catch (error) {
+      console.error("Error generating prompt:", error);
+    } finally {
+      setIsGeneratingIdeas(false);
+    }
+  };
+
   const handleIdeaGenerationClick = async () => {
     setIsGeneratingIdeas(true);
 
-    const promptText = window.prompt("Enter a topic or keywords:");
-
-    if (promptText) {
+    if (promptText && selectedPrompt) {
+      await generatePrompt(); // Generate the prompt based on user input and selected prompt
       try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-        const result = await model.generateContent(promptText);
-        const response = await result.response;
-        const ideas = response.text();
-        const htmlContent = markdownToHtml(ideas);
-        setContent(htmlContent);
+        // Now that we have the prompt, we can use it to generate the blog post
+        // No need to generate content again, as we already have it from the prompt
+        await submitBlogPost(content); // Pass the generated content directly
       } catch (error) {
-        console.error("Error generating ideas:", error);
+        console.error("Error generating blog post:", error);
       } finally {
         setIsGeneratingIdeas(false);
       }
     } else {
-      setIsGeneratingIdeas(false); // Set isGeneratingIdeas back to false if user cancels prompt
+      setIsGeneratingIdeas(false);
+    }
+  };
+
+  const submitBlogPost = async (blogContent) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/blogs/posts",
+        { title, content: blogContent, image: imageURL }
+      );
+      console.log("New post created:", response.data);
+      navigate(`/getallblogs`);
+    } catch (error) {
+      console.error("Error creating post:", error);
     }
   };
 
@@ -69,37 +117,55 @@ const CreatePost = () => {
   };
   const handleImageChange = (e) => setImageURL(e.target.value);
 
+  const handleInputChange = (e) => setPromptText(e.target.value);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/blogs/posts",
-        { title, content, image: imageURL }
-      );
-      console.log("New post created:", response.data);
-      navigate(`/getallblogs`);
+      // Instead of generating the blog content here, we generate it in handleIdeaGenerationClick
+      // and submit it using submitBlogPost function
+      await handleIdeaGenerationClick();
     } catch (error) {
-      console.error("Error creating post:", error);
+      console.error("Error handling submit:", error);
     }
   };
 
   return (
     <div className="create-post-container">
-      <button
-        className="AI-button"
-        onClick={handleIdeaGenerationClick}
-        disabled={isGeneratingIdeas}
-      >
-        <AIIcon />
-      </button>
-
-      {generatedIdeas.length > 0 && (
-        <ul>
-          {generatedIdeas.map((idea, index) => (
-            <li key={index}>{idea}</li>
-          ))}
-        </ul>
-      )}
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Enter a topic or keywords"
+          value={promptText}
+          onChange={handleInputChange}
+        />
+        <select onChange={handlePromptSelection} value={selectedPrompt}>
+          <option value="">Select Prompt</option>
+          <option value="Product Showcase">Product Showcase</option>
+          <option value="Interior Design Inspiration">
+            Interior Design Inspiration
+          </option>
+          <option value="Sustainable Furniture Solutions">
+            Sustainable Furniture Solutions
+          </option>
+          <option value="Furniture Care & Maintenance Guide">
+            Furniture Care & Maintenance Guide
+          </option>
+          <option value="Furniture Customization Ideas">
+            Furniture Customization Ideas
+          </option>
+          <option value="Furniture Buying Tips for First-Time Homeowners">
+            Furniture Buying Tips for First-Time Homeowners
+          </option>
+        </select>
+        <button
+          className="AI-button"
+          onClick={handleSubmit} // Now calling handleSubmit instead of handleIdeaGenerationClick directly
+          disabled={isGeneratingIdeas}
+        >
+          <AIIcon />
+        </button>
+      </div>
       <form
         id="create-post-form"
         onSubmit={handleSubmit}

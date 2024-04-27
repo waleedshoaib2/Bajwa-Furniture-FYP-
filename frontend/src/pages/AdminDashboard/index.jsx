@@ -1,6 +1,6 @@
 import React from "react";
 import AdminSidebar from "./AdminSidebar";
-import Graph from "../../components/Graph/Graph";
+// import Graph from "../../components/Graph/Graph";
 
 const AdminDashboard = () => {
   return (
