@@ -47,9 +47,10 @@
 .admin-sidebar {
   background-color: black;
   color: #fff;
-  padding: 60px;
+  padding: 80.3px;
   width: 100%;
   flex: 1; /* Fill remaining space */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
 }
 
 .admin-sidebar ul {

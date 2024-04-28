@@ -16,7 +16,11 @@ import {
   Legend,
   ResponsiveContainer,
   LineChart,
+  Area,
+  AreaChart,
   Line,
+  Pie,
+  PieChart,
 } from "recharts";
 
 function Main() {
@@ -65,6 +69,59 @@ function Main() {
     },
   ];
 
+  const data01 = [
+    {
+      name: "Group A",
+      value: 400,
+    },
+    {
+      name: "Group B",
+      value: 300,
+    },
+    {
+      name: "Group C",
+      value: 300,
+    },
+    {
+      name: "Group D",
+      value: 200,
+    },
+    {
+      name: "Group E",
+      value: 278,
+    },
+    {
+      name: "Group F",
+      value: 189,
+    },
+  ];
+  const data02 = [
+    {
+      name: "Group A",
+      value: 2400,
+    },
+    {
+      name: "Group B",
+      value: 4567,
+    },
+    {
+      name: "Group C",
+      value: 1398,
+    },
+    {
+      name: "Group D",
+      value: 9800,
+    },
+    {
+      name: "Group E",
+      value: 3908,
+    },
+    {
+      name: "Group F",
+      value: 4800,
+    },
+  ];
+
   return (
     <main className="main-container">
       <div className="main-title">
@@ -95,7 +152,7 @@ function Main() {
         </div>
         <div className="card">
           <div className="card-inner">
-            <h3>ALERTS</h3>
+            <h3>ORDERS</h3>
             <BsFillBellFill className="card_icon" />
           </div>
           <h1>42</h1>
@@ -120,8 +177,8 @@ function Main() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
+            <Bar dataKey="pv" fill="#000000" />
+            <Bar dataKey="uv" fill="#808080" />
           </BarChart>
         </ResponsiveContainer>
 
@@ -145,11 +202,72 @@ function Main() {
             <Line
               type="monotone"
               dataKey="pv"
-              stroke="#8884d8"
+              stroke="#808080"
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="uv" stroke="#000000" />
           </LineChart>
+        </ResponsiveContainer>
+        <ResponsiveContainer>
+          <AreaChart
+            width={730}
+            height={250}
+            data={data}
+            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          >
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#000000" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#000000" stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#808080" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#808080" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="uv"
+              stroke="#000000"
+              fillOpacity={1}
+              fill="url(#colorUv)"
+            />
+            <Area
+              type="monotone"
+              dataKey="pv"
+              stroke="#808080"
+              fillOpacity={1}
+              fill="url(#colorPv)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+        <ResponsiveContainer>
+          <PieChart width={730} height={250}>
+            <Pie
+              data={data01}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={50}
+              fill="#808080"
+            />
+            <Pie
+              data={data02}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              innerRadius={60}
+              outerRadius={80}
+              fill="#000000"
+              label
+            />
+          </PieChart>
         </ResponsiveContainer>
       </div>
     </main>
