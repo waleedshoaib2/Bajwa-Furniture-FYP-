@@ -11,6 +11,7 @@ const AdminChatList = ({ onChatSelect }) => {
   const [error, setError] = useState(null);
   const { userInfo } = useSelector((state) => state.user);
   const [searchQuery, setSearchQuery] = useState("");
+  const [clickedChatId, setClickedChatId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,34 +41,51 @@ const AdminChatList = ({ onChatSelect }) => {
     setSearchQuery(event.target.value);
   };
 
+  const handleChatItemClick = (chatId) => {
+    setClickedChatId(chatId);
+    onChatSelect(chatId);
+  };
+
   const filteredChats = chats.filter((chat) =>
     chat.user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <section className="message-area">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="search-bar">
-              <div className="search-input">
-                <input
-                  type="text"
-                  placeholder="Search chats..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
+    <>
+      <section className="message-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="search-bar">
+                <div className="search-input">
+                  <span className="search-icon">
+                    <FaSearch />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="  Search ........."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="search-input-field"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="chatlist">
-              <ul className="chat-list">
-                {filteredChats.map((chat) => (
-                  <li key={chat._id} className="chat-item">
-                    <div>
-                      <div onClick={() => onChatSelect(chat._id)}>
+              <div className="chatlist">
+                <ul className="chat-list">
+                  {filteredChats.map((chat) => (
+                    <li
+                      key={chat._id}
+                      className={`chat-item ${
+                        chat._id === clickedChatId ? "clicked" : ""
+                      }`}
+                      onClick={() => handleChatItemClick(chat._id)}
+                    >
+                      <div>
                         <div className="flex-shrink-0">
                           <div className="uppercorner">
-                            <FaUser />
+                            <div className="user-avatar">
+                              <FaUser />
+                            </div>
                             <div className="username">{chat.user.name}</div>
                             <span className="active"></span>
                           </div>
@@ -79,15 +97,15 @@ const AdminChatList = ({ onChatSelect }) => {
                           </p>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

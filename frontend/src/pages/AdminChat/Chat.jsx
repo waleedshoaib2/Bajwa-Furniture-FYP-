@@ -89,27 +89,26 @@ const Chat = ({ chatId }) => {
               <ul key={message._id} className="chat-list">
                 <li className="sender">
                   <p>{message.content}</p>
-                  <span className="time">12:00 PM</span>
                 </li>
               </ul>
             ))}
           </div>
-          <div className="send-box">
-            <form onSubmit={handleSubmit}>
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Type your message..."
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                />
-                <button type="submit" className="btn btn-primary">
-                  Send
-                </button>
-              </div>
-            </form>
-          </div>
+        </div>
+        <div className="send-box">
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Type your message here..."
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+              />
+              <button type="submit" className="btn btn-primary">
+                Send
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

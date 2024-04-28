@@ -12,9 +12,15 @@ const AdminChat = () => {
 
   return (
     <div style={{ display: "flex", margin: "0px" }}>
-      <AdminSidebar />
-      <AdminChatList onChatSelect={handleChatSelect} />
-      {selectedChatId && <Chat chatId={selectedChatId} />}
+      <div style={{ flex: "0 0 250px" }}>
+        <AdminSidebar />
+      </div>
+      <div style={{ flex: "1" }}>
+        <AdminChatList onChatSelect={handleChatSelect} />
+      </div>
+      <div style={{ flex: "2" }}>
+        {selectedChatId && <Chat chatId={selectedChatId} />}
+      </div>
     </div>
   );
 };
