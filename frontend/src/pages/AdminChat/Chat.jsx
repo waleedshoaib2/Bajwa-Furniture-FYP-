@@ -6,12 +6,12 @@ import "./Chat.css"; // Import the provided CSS styling
 
 const ENDPOINT = "http://localhost:4000";
 
-const Chat = ({ chatId }) => {
+const Chat = ({ chatId, username, sender }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [socket, setSocket] = useState(null);
   const { userInfo } = useSelector((state) => state.user);
-
+  console.log(sender);
   useEffect(() => {
     const newSocket = socketIOClient(ENDPOINT);
     setSocket(newSocket);
@@ -79,15 +79,16 @@ const Chat = ({ chatId }) => {
   return (
     <div className="message-area">
       <div className="chat-area">
+        <div className="msg-head">
+          <h3>{username}</h3>
+        </div>
         <div className="chatbox">
-          <div className="msg-head">
-            <h3>Chat</h3>
-          </div>
           <div className="msg-body">
-            {/* Display chat messages */}
             {messages.map((message) => (
               <ul key={message._id} className="chat-list">
-                <li className="sender">
+                <li
+                  className={message.sender === sender ? "sender" : "receiver"}
+                >
                   <p>{message.content}</p>
                 </li>
               </ul>

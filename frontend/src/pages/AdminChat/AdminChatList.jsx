@@ -41,9 +41,9 @@ const AdminChatList = ({ onChatSelect }) => {
     setSearchQuery(event.target.value);
   };
 
-  const handleChatItemClick = (chatId) => {
+  const handleChatItemClick = (chatId, username, sender) => {
     setClickedChatId(chatId);
-    onChatSelect(chatId);
+    onChatSelect(chatId, username, sender);
   };
 
   const filteredChats = chats.filter((chat) =>
@@ -78,7 +78,13 @@ const AdminChatList = ({ onChatSelect }) => {
                       className={`chat-item ${
                         chat._id === clickedChatId ? "clicked" : ""
                       }`}
-                      onClick={() => handleChatItemClick(chat._id)}
+                      onClick={() =>
+                        handleChatItemClick(
+                          chat._id,
+                          chat.user.name,
+                          chat.user._id
+                        )
+                      }
                     >
                       <div>
                         <div className="flex-shrink-0">
