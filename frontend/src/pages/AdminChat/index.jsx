@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./AdminChat.css";
+import AdminSidebar from "../AdminDashboard/AdminSidebar";
+import { FaUser } from "react-icons/fa";
+
 const AdminChat = () => {
   const [chats, setChats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,25 +57,43 @@ const AdminChat = () => {
 
   return (
     <div className="admin-chat-container">
-      <ul className="chat-list">
-        {chats.map((chat) => (
-          <li key={chat._id} className="chat-item">
-            <Link to={`/chats/${chat._id}`} className="chat-link">
-              <div>
-                <span className="chat-user">Chat with: {chat.userName}</span>{" "}
-                <br />
-                <span className="last-message">
-                  Last Message: {chat.lastMessageSnippet}
-                </span>
+      <AdminSidebar />
+      <section className="message-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="chat-area">
+                <div className="chatlist">
+                  <ul className="chat-list">
+                    {chats.map((chat) => (
+                      <li key={chat._id} className="chat-item">
+                        <Link to={`/chats/${chat._id}`} className="chat-link">
+                          <div>
+                            <div className="flex-shrink-0">
+                              <FaUser />
+                              <h3>{chat.user.name}</h3>
+                              <span className="active"></span>
+                            </div>
+                            <div className="flex-grow-1 ms-3">
+                              <p>
+                                Last Message:{" "}
+                                {
+                                  chat.messages[chat.messages.length - 1]
+                                    .content
+                                }
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <button onClick={handleClick} className="create-chat-btn">
-        Create Chat
-      </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

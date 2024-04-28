@@ -6,7 +6,7 @@
 // import { useSearchParams } from "react-router-dom";
 // import Meta from "../../components/Meta";
 // import Paginate from "../../components/Paginate/index.jsx";
-
+// import { useState, useEffect } from "react";
 // import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // export default function AllProducts() {
@@ -21,6 +21,7 @@
 //   const { products, page, pages } = productListInfo;
 //   useEffect(() => {
 //     const { visualproduct } = location.state || {};
+//     console.log(visualproduct);
 //     if (visualproduct) {
 //       setProduct(visualproduct);
 //     }
@@ -59,29 +60,31 @@
 //   );
 // }
 
-// // import { useLocation } from "react-router-dom";
-// // import Filter from "./components/Filter";
-// // import Listing from "./components/Listing";
+import { useLocation } from "react-router-dom";
+import Filter from "./components/Filter";
+import Listing from "./components/Listing";
 
-// // const VisualSearchShop = () => {
-// //   const location = useLocation();
-// //   console.log("Location state:", location.state);
-// //   const visualproduct = location.state?.visualproduct;
-// //   console.log("the product is ", visualproduct);
+const VisualSearchShop = () => {
+  const location = useLocation();
+  console.log("Location state:", location.state);
+  const visualproduct = location.state?.visualproduct;
+  console.log("the product is ", visualproduct);
 
-// //   return (
-// //     <div className="visual-search-shop">
-// //       <h1>Visual Search Results</h1>
-// //       <div className="product-grid">
-// //         <div className="allproducts__listings">
-// //           <Listing visualproduct={visualproduct} />
-// //           {visualproduct && visualproduct.length > 0 ? (
-// //             visualproduct.map((product, index) => <div key={index}></div>)
-// //           ) : (
-// //             <p>No products found</p>
-// //           )}
-// //         </div>
-// //       </div>
-// //     </div>
-// //   );
-// // };
+  return (
+    <div className="visual-search-shop">
+      <h1>Visual Search Results</h1>
+      <div className="product-grid">
+        <div className="allproducts__listings">
+          <Listing visualproduct={visualproduct} />
+          {visualproduct && visualproduct.length > 0 ? (
+            visualproduct.map((product, index) => <div key={index}></div>)
+          ) : (
+            <p>No products found</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default VisualSearchShop;
