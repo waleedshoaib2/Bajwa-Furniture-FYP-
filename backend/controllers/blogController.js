@@ -9,8 +9,6 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-// Get a single blog post by ID
 export const getPostById = async (req, res) => {
   try {
     const post = await BlogPost.findById(req.params.id);
