@@ -28,6 +28,7 @@
 
 .chatlist ul {
   list-style: none;
+  width: 100%;
 }
 
 .chat-item {
@@ -39,7 +40,6 @@
   border-bottom: none;
 }
 
-/* User Icon and Name */
 .uppercorner {
   display: flex;
   align-items: center;
@@ -51,12 +51,10 @@
   color: #333333;
 }
 
-/* Active Status (removed) */
 .active {
   display: none;
 }
 
-/* Search Input */
 .search-input {
   display: flex;
   align-items: center;
@@ -74,8 +72,8 @@
   border: none; /* Remove border */
   border-radius: 20px; /* Adjust border radius for rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Retain shadow effect */
-  overflow: hidden; /* Ensure rounded corners are visible */
-  /* Make chatlist width equal to search bar width */
+  overflow: hidden;
+  /* width: 500px; */
   margin-left: auto;
   margin-right: auto;
 }
