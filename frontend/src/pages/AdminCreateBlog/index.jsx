@@ -7,8 +7,10 @@ import "./CreatePost.css";
 import { useNavigate } from "react-router-dom";
 import EditorToolbar, { modules, formats } from "./toolbar";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import myAnimation from "./ai.gif";
 import ai_icon from "./ai.png";
+
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -154,6 +156,7 @@ const CreatePost = () => {
           placeholder="Enter a topic or keywords"
           value={promptText}
           onChange={handleInputChange}
+          style={{ borderRadius: "80px" }} // Rounded edges for the input
         />
         <select onChange={handlePromptSelection} value={selectedPrompt}>
           <option value="">Select Prompt</option>
@@ -193,10 +196,11 @@ const CreatePost = () => {
         </div>
         <button
           className="AI-button"
-          onClick={handleSubmit} // Now calling handleSubmit instead of handleIdeaGenerationClick directly
+          onClick={handleSubmit}
           disabled={isGeneratingIdeas}
+          // Rounded edges, black background, smaller size
         >
-          <AIIcon />
+          {/* <AIIcon /> */}
         </button>
       </div>
       <form
