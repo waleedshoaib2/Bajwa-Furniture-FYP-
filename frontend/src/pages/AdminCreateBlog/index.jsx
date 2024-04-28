@@ -7,10 +7,13 @@ import "./CreatePost.css";
 import { useNavigate } from "react-router-dom";
 import EditorToolbar, { modules, formats } from "./toolbar";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import myAnimation from "./ai.gif";
+import ai_icon from "./ai.png";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [showIcon, setShowicon] = useState(true);
   const [imageURL, setImageURL] = useState("");
   const navigate = useNavigate();
   const [isGeneratingIdeas, setIsGeneratingIdeas] = useState(false);
@@ -78,6 +81,7 @@ const CreatePost = () => {
       console.log(blog.response.text());
       const ideas = blog.response.text();
       setContent(ideas);
+      setShowicon(true);
     } catch (error) {
       console.error("Error generating prompt:", error);
     } finally {
@@ -91,9 +95,6 @@ const CreatePost = () => {
     if (promptText && selectedPrompt) {
       await generatePrompt(); // Generate the prompt based on user input and selected prompt
       try {
-        // Now that we have the prompt, we can use it to generate the blog post
-        // No need to generate content again, as we already have it from the prompt
-        // await submitBlogPost(content); // Pass the generated content directly
       } catch (error) {
         console.error("Error generating blog post:", error);
       } finally {
@@ -131,12 +132,18 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setShowicon(false);
       // Instead of generating the blog content here, we generate it in handleIdeaGenerationClick
       // and submit it using submitBlogPost function
       await handleIdeaGenerationClick();
     } catch (error) {
       console.error("Error handling submit:", error);
     }
+  };
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlayback = () => {
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -167,6 +174,23 @@ const CreatePost = () => {
             Furniture Buying Tips for First-Time Homeowners
           </option>
         </select>
+        <div>
+          {showIcon ? (
+            <img
+              src={ai_icon}
+              onClick={handleSubmit}
+              alt="AI Icon"
+              style={{ cursor: "pointer", width: "100px", height: "100px" }}
+            />
+          ) : (
+            <img
+              src={myAnimation}
+              alt="My Animation"
+              onClick={togglePlayback}
+              style={{ cursor: "pointer", width: "120px", height: "120px" }}
+            />
+          )}
+        </div>
         <button
           className="AI-button"
           onClick={handleSubmit} // Now calling handleSubmit instead of handleIdeaGenerationClick directly
