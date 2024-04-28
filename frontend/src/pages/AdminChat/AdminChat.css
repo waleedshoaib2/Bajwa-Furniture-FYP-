@@ -1,84 +1,62 @@
 /* AdminChat.css */
 
-.admin-chat-container {
-  display: flex;
-}
-
-.admin-chat-container .admin-sidebar {
-  /* Add styles for the admin sidebar */
-}
-
+/* Message Area */
 .message-area {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Bar */
+.search-bar {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.search-input input {
   width: 100%;
-  padding: 20px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #333333;
 }
 
-.chat-area {
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  padding: 20px;
-}
-
+/* Chat List */
 .chatlist {
-  max-height: 500px;
-  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .chat-item {
-  list-style: none;
-  padding: 15px 0;
-  border-bottom: 1px solid #e9ecef;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.chat-link {
-  text-decoration: none;
-  color: inherit;
+.chat-item:last-child {
+  border-bottom: none;
 }
 
-.chat-link:hover {
-  text-decoration: none;
-  color: inherit;
-}
-
-.chat-link .flex-shrink-0 {
-  width: 50px;
-}
-
-.chat-link img {
-  width: 100%;
-  border-radius: 50%;
-}
-
-.chat-link .active {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background-color: #28a745;
-  border-radius: 50%;
-  right: 5px;
-  bottom: 5px;
-}
-
-.chat-link .flex-grow-1 {
+/* User Icon and Name */
+.uppercorner {
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
 
-.chat-link h3 {
-  margin: 0;
-}
-
-.chat-link p {
-  margin: 5px 0;
-  color: #6c757d;
-}
-
-.last-message {
-  font-size: 14px;
-  color: #6c757d;
-}
-
-.last-message:before {
-  content: "Last Message: ";
+.username {
+  margin-left: 10px;
   font-weight: bold;
+  color: #333333;
+}
+
+/* Active Status (removed) */
+.active {
+  display: none;
 }
