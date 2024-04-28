@@ -16,11 +16,6 @@ const AdminSidebar = () => {
     <div className="admin-sidebar">
       <ul>
         <li>
-          <Link to="/profile" className="black-button">
-            <FaUserCircle /> Profile
-          </Link>
-        </li>
-        <li>
           <Link to="/admin/userlist" className="black-button">
             <FaUsers /> Users
           </Link>

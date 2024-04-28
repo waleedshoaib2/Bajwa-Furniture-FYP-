@@ -15,9 +15,21 @@ export default function HeaderLeftMenu() {
 
   return (
     <div className="header__container">
-      <img className="logo-bf" src="./logo.svg" alt="logo" />
-      {userInfo && !userInfo.admin ? null : (
+      {userInfo && !userInfo.admin ? (
+        <div
+          style={{
+            width: "270px",
+            height: "380px",
+            backgroundColor: "black",
+            padding: 50,
+            marginTop: 150,
+          }}
+        >
+          <img className="logo-bf" src="./lightlogo.svg" alt="logo" />
+        </div>
+      ) : (
         <>
+          <img className="logo-bf" src="./logo.svg" alt="logo" />
           <NavigationText text={"Home"} url="/" />
           <NavigationText text={"Blogs"} url="/blogs" />
           <NavigationText text={"Products"} url="/shop" />
