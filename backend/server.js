@@ -7,6 +7,7 @@ import "./config/passport.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+// import path from "path";
 
 import orderRoutes from "./routes/orderRoutes.js";
 import stripeRoutes from "./routes/stripeRoutes.js";
@@ -19,6 +20,19 @@ import newsletterRoutes from "./routes/newsletterRoutes.js";
 const app = express();
 
 connectDb();
+// Set the 'views' directory for your EJS templates
+import path from "path";
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.set("views", path.join(__dirname, "views"));
+
+// Set EJS as the view engine
+app.set("view engine", "ejs");
 app.use(passport.initialize());
 
 app.use(cors());
