@@ -5,20 +5,11 @@ import AdminHeader from "./AdminNavbar";
 import "./AdminHeader.css";
 const AdminDashboard = () => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "250px 1fr",
-        gridTemplateRows: "auto 1fr",
-      }}
-    >
-      <div style={{ gridRow: "1 / span 1", gridColumn: "1 / span 2" }}>
-        <AdminHeader />
-      </div>
-      <div style={{ gridRow: "2 / span 1", gridColumn: "1 / span 1" }}>
+    <div style={{ display: "flex" }}>
+      <div style={{ flex: "0 0 250px" }}>
         <AdminSidebar />
       </div>
-      <div style={{ gridRow: "2 / span 1", gridColumn: "2 / span 1" }}>
+      <div style={{ flex: "1" }}>
         <Main />
       </div>
     </div>

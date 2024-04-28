@@ -41,6 +41,11 @@ const AdminSidebar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/admin/chat" className="black-button">
+            <FaSignOutAlt /> Messages
+          </Link>
+        </li>
+        <li>
           <Link to="/admin/orderlist" className="black-button">
             <FaClipboardList /> Orders
           </Link>
@@ -56,6 +61,7 @@ const AdminSidebar = () => {
             <FaSignOutAlt /> Logout
           </Link>
         </li>
+
         {/* Add more sidebar items as needed */}
       </ul>
     </div>

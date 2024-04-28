@@ -58,8 +58,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Meta />
-        {userInfo?.isAdmin ? null : <Header />}
-
+        <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
 
