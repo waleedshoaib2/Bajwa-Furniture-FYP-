@@ -7,13 +7,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.AI-button {
-  border-color: #fff;
-  border: none;
-}
-.AI-button::hover {
-  color: #007bff;
-}
 .create-post-form {
   display: grid;
   gap: 20px;
@@ -41,11 +34,10 @@ textarea {
 }
 
 .publish-button {
-  padding: 10px 20px;
-  background-color: #007bff;
+  /* Smaller size */
+  background-color: black; /* Black background */
   color: #fff;
-  border: none;
-  border-radius: 5px;
+  border-radius: 20px; /* Rounded edges */
   font-size: 16px;
   cursor: pointer;
 }
