@@ -12,11 +12,10 @@
 /* Search Bar */
 .search-bar {
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border-radius: 20px; /* Make the search bar round */
   padding: 10px;
   margin-bottom: 20px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow around the search bar */
 }
 
 .search-input input {
@@ -27,12 +26,8 @@
   color: #333333;
 }
 
-/* Chat List */
-.chatlist {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+.chatlist ul {
+  list-style: none;
 }
 
 .chat-item {
@@ -59,4 +54,81 @@
 /* Active Status (removed) */
 .active {
   display: none;
+}
+
+/* Search Input */
+.search-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-icon {
+  position: relative;
+  left: 10px;
+  color: black;
+}
+
+.chatlist {
+  background-color: white;
+  border: none; /* Remove border */
+  border-radius: 20px; /* Adjust border radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Retain shadow effect */
+  overflow: hidden; /* Ensure rounded corners are visible */
+  /* Make chatlist width equal to search bar width */
+  margin-left: auto;
+  margin-right: auto;
+}
+.chat-item:hover, /* Apply hover effect */
+.chat-item.clicked {
+  /* Apply hover effect on click */
+  background-color: #f0f0f0; /* Change the background color */
+}
+
+.search-input-field {
+  width: calc(100% - 40px); /* Adjust based on the width of the icon */
+  padding: 5px 15px; /* Adjust padding for better appearance */
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #333333;
+  border-radius: 20px; /* Ensure input field has round edges */
+  background: transparent;
+  /* Ensure background is transparent to see icon */
+}
+/* Adjust icon size if needed */
+.search-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Distance between username and last message */
+.flex-grow-1.ms-3 {
+  margin-left: 20px;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+.uppercorner {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px; /* Adjust the size of the circle */
+  height: 40px; /* Adjust the size of the circle */
+  border-radius: 50%; /* Create a circle */
+  background-color: #ccc; /* Set the background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-avatar svg {
+  color: white; /* Set the color of the user icon */
+}
+
+.username {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #333333;
 }

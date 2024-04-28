@@ -7,10 +7,9 @@
 
 .chat-area {
   display: flex;
-  height: 90vh;
-  background-color: #fff;
-  border-radius: 0.3rem;
-  overflow: hidden;
+  flex-direction: column;
+  height: 100%;
+  /* position: relative; */
 }
 
 .chatlist {
@@ -54,9 +53,32 @@
   border-radius: 10px;
 }
 
+/* Style sender messages */
+.msg-body ul li.sender p {
+  background-color: #000;
+  color: #fff;
+  border-radius: 10px; /* Add border radius to match the message box */
+  display: inline-block; /* Make the message box inline-block */
+  padding: 10px; /* Adjust padding for better appearance */
+  margin: 0; /* Remove default margin */
+}
+
+/* Style receiver messages */
+.msg-body ul li.receiver p {
+  background-color: #ccc;
+  color: #000;
+  border-radius: 10px; /* Add border radius to match the message box */
+  display: inline-block; /* Make the message box inline-block */
+  padding: 10px; /* Adjust padding for better appearance */
+  margin: 0; /* Remove default margin */
+}
+
 .send-box {
   padding: 15px;
   border-top: 1px solid #ccc;
+  position: absolute;
+  bottom: 0; /* Position the send box at the bottom */
+  width: 100%;
 }
 
 .input-group {
@@ -65,18 +87,19 @@
 }
 
 .form-control {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px;
+  border-radius: 20px; /* Make the input field round */
+  padding: 10px; /* Adjust padding for better appearance */
+  border: 1px solid #ccc; /* Add border for clarity */
+  outline: none; /* Remove outline on focus */
 }
 
-.btn {
-  padding: 10px 20px;
-  background-color: #3867d6;
-  color: #fff;
-  border: none;
-  border-radius: 0 5px 5px 0;
+.btn-primary {
+  border-radius: 20px; /* Make the button round */
+  background-color: #000; /* Set the button background color to black */
+  color: #fff; /* Set text color to white */
+  padding: 10px 20px; /* Adjust padding for better appearance */
+  border: none; /* Remove default button border */
+  cursor: pointer; /* Show cursor as pointer on hover */
 }
 
 /* Media Query for Responsive Design */
