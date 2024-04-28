@@ -15,7 +15,7 @@ export default function HeaderLeftMenu() {
 
   return (
     <div className="header__container">
-      {userInfo && !userInfo.admin ? (
+      {userInfo && userInfo.isAdmin ? (
         <div
           style={{
             width: "270px",
