@@ -72,7 +72,6 @@ const VisualSearchShop = () => {
 
   return (
     <div className="visual-search-shop">
-      <h1>Visual Search Results</h1>
       <div className="product-grid">
         <div className="allproducts__listings">
           <Listing visualproduct={visualproduct} />

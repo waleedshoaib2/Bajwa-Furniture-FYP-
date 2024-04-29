@@ -12,7 +12,7 @@ export default function Meta({ title, description, keywords }) {
 }
 
 Meta.defaultProps = {
-  title: "Welcome To Stable",
+  title: "Bajwa Furniture",
   description: "We sell the best modern furniture",
   keywords: "Buy from us!",
 };
