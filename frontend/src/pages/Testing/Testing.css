@@ -1,8 +1,8 @@
 .sidebar {
   background-color: #111;
   color: #fff;
-  width: 270px; /* Adjust the width as needed */
-  height: auto;
+  width: 280px; /* Adjust the width as needed */
+  height: 100vh;
   transition: width 0.4s ease; /* Use ease timing function for smoother animation */
   padding-top: 60px;
   font-family: Arial, sans-serif;
@@ -56,11 +56,16 @@
   margin-bottom: 20px; /* Adjusted font size */
   transition: background-color 0.3s ease; /* Add transition effect */
 }
-
 .menu-items a:hover {
-  background-color: #333;
+  color: grey; /* Change text color on hover */
 }
 
 .menu-items a span {
   margin-left: 10px;
+}
+
+.menu-items li:hover {
+  padding: 15px; /* Increase padding on hover */
+  background-color: #333; /* Change background color on hover */
+  transition: padding 0.3s ease, background-color 0.3s ease; /* Add transition effect */
 }

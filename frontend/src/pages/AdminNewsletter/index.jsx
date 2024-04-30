@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import AdminSidebar from "../AdminDashboard/AdminSidebar";
+import Testing from "../Testing/Testing";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -68,7 +69,7 @@ const Newsletter = () => {
   return (
     <>
       <div style={{ display: "flex" }}>
-        <AdminSidebar />
+        <Testing />
         <div className="admin-list">
           {loading && <div className="admin-list__container">Loading...</div>}
           {error && (

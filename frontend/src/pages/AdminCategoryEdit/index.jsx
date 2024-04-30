@@ -64,50 +64,52 @@ export default function AdminEditCategory() {
   };
 
   return (
-    <div className="auth">
-      <DisplayPending pending={pending} />
-      <form
-        className="adminCreateProduct__container" // Use the same class name as create category
-        onSubmit={updateCategoryHandler}
-      >
-        {updateSuccess ? (
-          <Alert severity="success">Update Succeed</Alert>
-        ) : error ? (
-          <Alert severity="error">{error}</Alert>
-        ) : null}
-        <div className="auth__title">Edit Category</div>{" "}
-        {/* Keep the title consistent */}
-        <div className="auth__input__container">
-          <label htmlFor="update_name">Name: </label>
-          <input
-            id="update_name"
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            required
-          />
-        </div>
-        <div className="auth__input__container">
-          <label htmlFor="update_description">Description: </label>
-          <textarea
-            id="update_description"
-            className="hide-scrollbar"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="auth-button green-button">
-          Update
-        </button>
-        <button
-          className="auth-button"
-          type="submit"
-          onClick={() => navigate("/admin/categorylist")}
+    <>
+      <div className="auth">
+        <DisplayPending pending={pending} />
+        <form
+          className="adminCreateProduct__container" // Use the same class name as create category
+          onSubmit={updateCategoryHandler}
         >
-          Go Back
-        </button>
-      </form>
-    </div>
+          {updateSuccess ? (
+            <Alert severity="success">Update Succeed</Alert>
+          ) : error ? (
+            <Alert severity="error">{error}</Alert>
+          ) : null}
+          <div className="auth__title">Edit Category</div>{" "}
+          {/* Keep the title consistent */}
+          <div className="auth__input__container">
+            <label htmlFor="update_name">Name: </label>
+            <input
+              id="update_name"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              required
+            />
+          </div>
+          <div className="auth__input__container">
+            <label htmlFor="update_description">Description: </label>
+            <textarea
+              id="update_description"
+              className="hide-scrollbar"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              required
+            ></textarea>
+          </div>
+          <button type="submit" className="auth-button green-button">
+            Update
+          </button>
+          <button
+            className="auth-button"
+            type="submit"
+            onClick={() => navigate("/admin/categorylist")}
+          >
+            Go Back
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
