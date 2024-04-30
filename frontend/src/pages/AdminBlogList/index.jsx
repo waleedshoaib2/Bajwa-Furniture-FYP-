@@ -7,6 +7,7 @@ import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
 import "./BlogList.css";
 import AdminSidebar from "../AdminDashboard/AdminSidebar";
+import Testing from "../Testing/Testing";
 export default function AdminGetBlogList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export default function AdminGetBlogList() {
     <>
       <div style={{ display: "flex" }}>
         <div>
-          <AdminSidebar />
+          <Testing />
         </div>
         <div className="admin-list">
           <DisplayPending pending={pending} />

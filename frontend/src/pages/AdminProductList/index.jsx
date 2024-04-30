@@ -6,7 +6,7 @@ import { logout } from "../../redux/action/apiUserAction";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
 import AdminSidebar from "../AdminDashboard/AdminSidebar";
-
+import Testing from "../Testing/Testing";
 export default function AdminProductList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ export default function AdminProductList() {
     <>
       <div style={{ display: "flex" }}>
         <div>
-          <AdminSidebar />
+          <Testing />
         </div>
         <div className="admin-list">
           <DisplayPending pending={pending} />

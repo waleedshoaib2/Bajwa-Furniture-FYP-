@@ -7,6 +7,7 @@ import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
 import { adminGetCategory } from "../../lib/axiosAPI.js";
 import AdminSidebar from "../AdminDashboard/AdminSidebar.jsx";
+import Testing from "../Testing/Testing.jsx";
 
 export default function AdminCategoryList() {
   const dispatch = useDispatch();
@@ -63,8 +64,9 @@ export default function AdminCategoryList() {
     <>
       <div style={{ display: "flex" }}>
         <div>
-          <AdminSidebar />
+          <Testing />
         </div>
+
         <div className="admin-list">
           <DisplayPending pending={pending} />
           <div className="admin-list__container">

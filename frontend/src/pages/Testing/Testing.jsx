@@ -38,13 +38,13 @@ const Testing = () => {
       </div>
       <ul className="menu-items">
         <li>
-          <Link to="/chat-support">
+          <Link to="/admin/chat">
             <FaCommentAlt /> {/* Icon for Chat Support */}
             {isSidebarOpen && <span>Chat Support</span>}
           </Link>
         </li>
         <li>
-          <Link to="/categories">
+          <Link to="/admin/categorylist/">
             <FaUsers />
             {isSidebarOpen && <span>Categories</span>}
           </Link>
@@ -68,25 +68,25 @@ const Testing = () => {
           </Link>
         </li>
         <li>
-          <Link to="/products">
+          <Link to="/admin/productlist/">
             <FaBox />
             {isSidebarOpen && <span>Products</span>}
           </Link>
         </li>
         <li>
-          <Link to="/blogs">
+          <Link to="/getallblogs">
             <FaEdit />
             {isSidebarOpen && <span>Blogs</span>}
           </Link>
         </li>
         <li>
-          <Link to="/newsletter">
+          <Link to="/admin/newsletter/">
             <FaEnvelope />
             {isSidebarOpen && <span>Newsletter</span>}
           </Link>
         </li>
         <li>
-          <Link to="/newsletter">
+          <Link to="/">
             <FaSignOutAlt />
             {isSidebarOpen && <span>Logout</span>}
           </Link>
