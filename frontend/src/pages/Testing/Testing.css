@@ -56,11 +56,16 @@
   margin-bottom: 20px; /* Adjusted font size */
   transition: background-color 0.3s ease; /* Add transition effect */
 }
-
 .menu-items a:hover {
-  background-color: #333;
+  color: grey; /* Change text color on hover */
 }
 
 .menu-items a span {
   margin-left: 10px;
+}
+
+.menu-items li:hover {
+  padding: 15px; /* Increase padding on hover */
+  background-color: #333; /* Change background color on hover */
+  transition: padding 0.3s ease, background-color 0.3s ease; /* Add transition effect */
 }
