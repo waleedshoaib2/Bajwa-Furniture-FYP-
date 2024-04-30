@@ -36,7 +36,6 @@ export default function AdminGetBlogList() {
         `http://localhost:4000/api/blogs/posts/${blogID}`
       );
       console.log(response.data);
-      // Assuming you want to refresh the blog list after deletion
       fetchBlogs();
     } catch (error) {
       console.log(error);
@@ -50,7 +49,6 @@ export default function AdminGetBlogList() {
   };
 
   const handleView = (blogID) => {
-    // navigate(`/blog/${blogID}`);
     navigate(`/blog/${blogID}`);
   };
 
@@ -83,7 +81,6 @@ export default function AdminGetBlogList() {
                   <th scope="col">Title</th>
                   <th scope="col">Edit/Delete</th>
                   <th scope="col">View</th>{" "}
-                  {/* Add a new column for the View button */}
                 </tr>
               </thead>
               <tbody>

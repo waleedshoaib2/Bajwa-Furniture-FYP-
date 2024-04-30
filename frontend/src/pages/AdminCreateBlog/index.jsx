@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
-import AIIcon from "./AIIcon";
+
 import "./CreatePost.css";
 import { useNavigate } from "react-router-dom";
 import EditorToolbar, { modules, formats } from "./toolbar";
@@ -10,10 +10,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import myAnimation from "./ai.gif";
 import ai_icon from "./ai.png";
-
+import UseAnimations from "react-useanimations";
+import infinity from "react-useanimations/lib/infinity";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
+  const [showFields, setShowFields] = useState(false);
   const [content, setContent] = useState("");
   const [showIcon, setShowicon] = useState(true);
   const [imageURL, setImageURL] = useState("");
@@ -107,11 +109,17 @@ const CreatePost = () => {
     }
   };
 
-  const submitBlogPost = async (blogContent) => {
+  const submitBlogPost = async (e, blogContent) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
     try {
       const response = await axios.post(
         "http://localhost:4000/api/blogs/posts",
-        { title, content: blogContent, image: imageURL }
+        {
+          title,
+          content: blogContent,
+          image: imageURL,
+        }
       );
       console.log("New post created:", response.data);
       navigate(`/getallblogs`);
@@ -143,6 +151,9 @@ const CreatePost = () => {
     }
   };
   const [isPlaying, setIsPlaying] = useState(false);
+  const toggleFields = () => {
+    setShowFields(!showFields);
+  };
 
   const togglePlayback = () => {
     setIsPlaying(!isPlaying);
@@ -150,62 +161,75 @@ const CreatePost = () => {
 
   return (
     <div className="create-post-container">
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Enter a topic or keywords"
-          value={promptText}
-          onChange={handleInputChange}
-          style={{ borderRadius: "80px" }} // Rounded edges for the input
-        />
-        <select onChange={handlePromptSelection} value={selectedPrompt}>
-          <option value="">Select Prompt</option>
-          <option value="Product Showcase">Product Showcase</option>
-          <option value="Interior Design Inspiration">
-            Interior Design Inspiration
-          </option>
-          <option value="Sustainable Furniture Solutions">
-            Sustainable Furniture Solutions
-          </option>
-          <option value="Furniture Care & Maintenance Guide">
-            Furniture Care & Maintenance Guide
-          </option>
-          <option value="Furniture Customization Ideas">
-            Furniture Customization Ideas
-          </option>
-          <option value="Furniture Buying Tips for First-Time Homeowners">
-            Furniture Buying Tips for First-Time Homeowners
-          </option>
-        </select>
-        <div>
-          {showIcon ? (
-            <img
-              src={ai_icon}
-              onClick={handleSubmit}
-              alt="AI Icon"
-              style={{ cursor: "pointer", width: "100px", height: "100px" }}
-            />
-          ) : (
-            <img
-              src={myAnimation}
-              alt="My Animation"
-              onClick={togglePlayback}
-              style={{ cursor: "pointer", width: "120px", height: "120px" }}
-            />
-          )}
-        </div>
-        <button
-          className="AI-button"
-          onClick={handleSubmit}
-          disabled={isGeneratingIdeas}
-          // Rounded edges, black background, smaller size
-        >
-          {/* <AIIcon /> */}
+      <div>
+        <button onClick={toggleFields} className="addai-button">
+          Use AI
         </button>
+        {showFields && (
+          <div className="input-container">
+            <div style={{ marginBottom: "20px" }}>
+              <input
+                type="text"
+                placeholder="Enter a topic or keywords"
+                value={promptText}
+                onChange={handleInputChange}
+                style={{ borderRadius: "80px" }}
+              />
+            </div>
+            <div
+              style={{
+                marginBottom: "20px",
+                backgroundColor: "#f0f0f0",
+                padding: "10px",
+                borderRadius: "5px",
+              }}
+            >
+              <select
+                onChange={handlePromptSelection}
+                value={selectedPrompt}
+                style={{
+                  width: "100%",
+                  border: "none",
+                  outline: "none",
+                  padding: "5px",
+                  borderRadius: "5px",
+                  backgroundColor: "inherit",
+                }}
+              >
+                <option value="">Select Prompt</option>
+                <option value="Product Showcase">Product Showcase</option>
+                <option value="Interior Design Inspiration">
+                  Interior Design Inspiration
+                </option>
+                <option value="Sustainable Furniture Solutions">
+                  Sustainable Furniture Solutions
+                </option>
+                <option value="Furniture Care & Maintenance Guide">
+                  Furniture Care & Maintenance Guide
+                </option>
+                <option value="Furniture Customization Ideas">
+                  Furniture Customization Ideas
+                </option>
+                <option value="Furniture Buying Tips for First-Time Homeowners">
+                  Furniture Buying Tips for First-Time Homeowners
+                </option>
+              </select>
+            </div>
+            <div style={{ marginBottom: "20px", marginRight: "20px" }}>
+              <UseAnimations
+                animation={showIcon ? infinity : myAnimation} // Change 'myAnimation' to your animation variable if needed
+                size={showIcon ? 56 : 40} // Adjust size based on showIcon state
+                onClick={handleSubmit}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+          </div>
+        )}
       </div>
+
       <form
         id="create-post-form"
-        onSubmit={handleSubmit}
+        onSubmit={(e) => submitBlogPost(e, content)}
         className="create-post-form"
         style={{ height: formHeight }}
       >

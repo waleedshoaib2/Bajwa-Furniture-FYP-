@@ -24,6 +24,7 @@ export const getPostById = async (req, res) => {
 // Create a new blog post
 export const createPost = async (req, res) => {
   const { title, content, image } = req.body;
+  console.log("hello world");
 
   const post = new BlogPost({
     title,

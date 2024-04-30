@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// ... other imports for loading, error display, etc.
 import "./CustomerBlogList.css"; // Import your CSS file
 
 export default function CustomerBlogList() {
@@ -12,7 +11,7 @@ export default function CustomerBlogList() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/blogs/posts"); // Adjust API endpoint
+      const response = await axios.get("http://localhost:4000/api/blogs/posts");
       setBlogs(response.data);
       setPending(false);
     } catch (error) {
@@ -40,17 +39,13 @@ export default function CustomerBlogList() {
               alt={blog.title}
               className="blog-card__image"
             />
-            <div className="blog-card__info">
-              <h3 className="blog-card__title">{blog.title}</h3>
-              {/* Add an excerpt if desired */}
-
-              <div
-                className="admin-add-button"
-                onClick={() => handleReadMore(blog._id)}
-              >
-                Read More
-              </div>
-            </div>
+            <div className="blog-card__title">{blog.title}</div>
+            <button
+              className="admin-add-button"
+              onClick={() => handleReadMore(blog._id)}
+            >
+              Read More
+            </button>
           </div>
         ))}
       </div>
