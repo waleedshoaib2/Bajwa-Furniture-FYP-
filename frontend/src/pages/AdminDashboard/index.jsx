@@ -8,7 +8,8 @@ const AdminDashboard = () => {
   return (
     <div style={{ display: "flex" }}>
       <div style={{ flex: "0 0 250px" }}>
-        <Testing />
+        <AdminSidebar />
+        {/* <Testing /> */}
       </div>
       <div style={{ flex: "1" }}>
         <Main />
