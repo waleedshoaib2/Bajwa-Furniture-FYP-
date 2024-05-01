@@ -17,15 +17,12 @@ const AdminChat = () => {
 
   return (
     <>
-      <div style={{ display: "flex", height: "100%" }}>
-        <div style={{ flex: "1", height: "100%" }}>
-          <Testing />
-        </div>
+      <div style={{ display: "flex", margin: "0px" }}>
+        <Testing />
 
-        <div style={{ flex: "1", height: "100%", marginRight: "10px" }}>
-          <AdminChatList onChatSelect={handleChatSelect} />
-        </div>
-        <div style={{ flex: "2", height: "100%" }}>
+        <AdminChatList onChatSelect={handleChatSelect} />
+
+        <div style={{ flex: "2" }}>
           {selectedChatId && (
             <Chat chatId={selectedChatId} username={username} sender={sender} />
           )}

@@ -2,7 +2,7 @@
   background-color: #111;
   color: #fff;
   width: 280px; /* Adjust the width as needed */
-  height: 100vh;
+  height: auto;
   transition: width 0.4s ease; /* Use ease timing function for smoother animation */
   padding-top: 60px;
   font-family: Arial, sans-serif;

@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 const AdminSidebar = () => {
   return (
-    <div className="admin-sidebar">
+    <div className="admin-sidebar" style={{ height: "100%" }}>
       <ul>
         <li>
           <Link to="/admin/userlist" className="black-button">

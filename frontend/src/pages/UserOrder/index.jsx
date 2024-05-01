@@ -7,7 +7,7 @@ import Paginate from "../../components/Paginate/index.jsx";
 import Meta from "../../components/Meta";
 import { useSearchParams } from "react-router-dom";
 import DisplayPending from "../../components/DisplayPending";
-
+import Testing from "../Testing/Testing.jsx";
 export default function OrderPage() {
   const navigate = useNavigate();
   let dispatch = useDispatch();
@@ -34,60 +34,66 @@ export default function OrderPage() {
   }, [dispatch, userInfo, userInfo.token, currPageQuery]);
 
   return (
-    <div className="orders_body">
-      <Meta title="Orders" />
-      <DisplayPending pending={pending} />
-      <div className="orders_container">
-        <div className="orders_title">Order History</div>
-        {orders.orders?.map((order) => {
-          return (
-            <div className="orders_listing" key={order._id}>
-              <div className="orders_listing_header">
-                <div className="orders_listing_header_rest">
-                  {new Date(order.createdAt).toISOString().slice(0, 10)}
-                </div>
+    <>
+      <div style={{ display: "flex" }}>
+        <Testing />
 
-                <div className="orders_listing_header_totalPrice">
-                  $ {order.totalPrice / 100}
-                </div>
+        <div className="orders_body">
+          <Meta title="Orders" />
+          <DisplayPending pending={pending} />
+          <div className="orders_container">
+            <div className="orders_title">Order History</div>
+            {orders.orders?.map((order) => {
+              return (
+                <div className="orders_listing" key={order._id}>
+                  <div className="orders_listing_header">
+                    <div className="orders_listing_header_rest">
+                      {new Date(order.createdAt).toISOString().slice(0, 10)}
+                    </div>
 
-                <div
-                  className="orders_listing_header_order_detail"
-                  onClick={() => navigate(`/order/${order._id}`)}
-                >
-                  <div>Order Details</div>
+                    <div className="orders_listing_header_totalPrice">
+                      $ {order.totalPrice / 100}
+                    </div>
+
+                    <div
+                      className="orders_listing_header_order_detail"
+                      onClick={() => navigate(`/order/${order._id}`)}
+                    >
+                      <div>Order Details</div>
+                    </div>
+                  </div>
+                  <div className="orders_listing_body">
+                    <img src={order.orderItems[0].image} alt="listing_image" />
+                    <div className="order_listing_body_description">
+                      <div style={{ fontWeight: 700 }}>Products:</div>
+                      {order.orderItems.map((individualItem, index) => {
+                        return (
+                          <div key={index}>
+                            {index < 3
+                              ? `${index + 1}. ${individualItem.name}`
+                              : index === 3
+                              ? "More..."
+                              : null}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="order_listing_body_description">
+                      <div style={{ fontWeight: 700 }}>Shipping Address</div>
+                      <div>{order.shippingAddress.line1}</div>
+                      <div>{order.shippingAddress.line2}</div>
+                      <div>{order.shippingAddress.city}</div>
+                      <div>{order.shippingAddress.postalCode}</div>
+                      <div>{order.shippingAddress.country}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="orders_listing_body">
-                <img src={order.orderItems[0].image} alt="listing_image" />
-                <div className="order_listing_body_description">
-                  <div style={{ fontWeight: 700 }}>Products:</div>
-                  {order.orderItems.map((individualItem, index) => {
-                    return (
-                      <div key={index}>
-                        {index < 3
-                          ? `${index + 1}. ${individualItem.name}`
-                          : index === 3
-                          ? "More..."
-                          : null}
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="order_listing_body_description">
-                  <div style={{ fontWeight: 700 }}>Shipping Address</div>
-                  <div>{order.shippingAddress.line1}</div>
-                  <div>{order.shippingAddress.line2}</div>
-                  <div>{order.shippingAddress.city}</div>
-                  <div>{order.shippingAddress.postalCode}</div>
-                  <div>{order.shippingAddress.country}</div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-        <Paginate page={orders.page} pages={orders.pages} />
+              );
+            })}
+            <Paginate page={orders.page} pages={orders.pages} />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
