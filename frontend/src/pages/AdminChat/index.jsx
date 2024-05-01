@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AdminChatList from "./AdminChatList";
 import AdminSidebar from "../AdminDashboard/AdminSidebar";
 import Chat from "./Chat";
+import Sidebar from "../Testing/Sidebar";
 
 const AdminChat = () => {
   const [selectedChatId, setSelectedChatId] = useState(null);
@@ -16,9 +17,8 @@ const AdminChat = () => {
 
   return (
     <div style={{ display: "flex", margin: "0px" }}>
-      <div style={{ flex: "0 0 250px" }}>
-        <AdminSidebar />
-      </div>
+      <Sidebar />
+
       <div style={{ flex: "1" }}>
         <AdminChatList onChatSelect={handleChatSelect} />
       </div>

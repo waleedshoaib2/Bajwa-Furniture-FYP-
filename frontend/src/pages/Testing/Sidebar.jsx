@@ -14,8 +14,9 @@ import {
   FaSignOutAlt, // New icon for Orders
 } from "react-icons/fa";
 import "./Testing.css"; // CSS file for styling
+import lightlogo from "./Lightlogo.svg";
 
-const Testing = () => {
+const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -24,13 +25,8 @@ const Testing = () => {
 
   return (
     <div className={`sidebar ${isSidebarOpen ? "" : "collapsed"}`}>
+      <img height={100} src={lightlogo} alt="logo" />
       <div className="sidebar-header">
-        <img
-          className="logo-bf"
-          height={100}
-          src="./lightlogo.svg"
-          alt="logo"
-        />
         <div className="logo"></div>
         <button className="toggle-btn" onClick={toggleSidebar}>
           {isSidebarOpen ? <FaAngleLeft /> : <FaAngleRight />}
@@ -44,7 +40,7 @@ const Testing = () => {
           </Link>
         </li>
         <li>
-          <Link to="/categories">
+          <Link to="/admin/categorylist/">
             <FaUsers />
             {isSidebarOpen && <span>Categories</span>}
           </Link>
@@ -96,4 +92,4 @@ const Testing = () => {
   );
 };
 
-export default Testing;
+export default Sidebar;

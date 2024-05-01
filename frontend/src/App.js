@@ -48,7 +48,8 @@ import ChatList from "./pages/CustomerChat";
 import AdminDashboard from "./pages/AdminDashboard";
 import { useSelector } from "react-redux";
 import Testdashboard from "./pages/Testing/index";
-import Testing from "./pages/Testing/Testing";
+
+// import Testing from "./pages/Testing/Testing";
 import AdminHeader from "./pages/AdminDashboard/AdminNavbar";
 function App() {
   React.useEffect(() => {

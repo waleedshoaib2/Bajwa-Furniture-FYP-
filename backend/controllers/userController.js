@@ -74,7 +74,6 @@ export const signup = async (req, res, next) => {
   try {
     const { name, email, phoneNumber, address, password, subscribeNewsletter } =
       req.body;
-    console.log("happy birthday", subscribeNewsletter);
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -137,11 +136,16 @@ export const getAllUsers = async (req, res, next) => {
 };
 export const updatePassword = async (req, res, next) => {
   try {
-    const { userId } = req.user; // Get user ID from authenticated request
+    console.log(req.user._id);
+    const { userId } = req.user._id;
+    console.log("userId is", userId);
+    // Get user ID from authenticated request
+
     const { currentPassword, newPassword } = req.body;
 
     // Find user
     const user = await User.findById(userId);
+    console.log("user is ", user);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }

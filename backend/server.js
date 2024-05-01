@@ -17,7 +17,7 @@ import { Server } from "socket.io";
 
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 
-const app = express();
+export const app = express();
 
 connectDb();
 // Set the 'views' directory for your EJS templates
@@ -61,7 +61,7 @@ const httpServer = app.listen(4000, () => {
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });

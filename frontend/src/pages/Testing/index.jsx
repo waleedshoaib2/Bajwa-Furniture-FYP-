@@ -1,11 +1,11 @@
 import React from "react";
-import Testing from "./Testing";
+import Sidebar from "./Sidebar";
 import Main from "../AdminDashboard/Graph";
 
 const Testdashboard = () => {
   return (
     <div style={{ display: "flex" }}>
-      <Testing />
+      <Sidebar />
       <div style={{ flex: "1", padding: "20px" }}>
         <Main />
       </div>
