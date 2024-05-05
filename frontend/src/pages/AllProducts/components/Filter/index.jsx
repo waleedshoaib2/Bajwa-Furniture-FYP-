@@ -1,15 +1,14 @@
 import React from "react";
-import Availability from "./components/Availability";
 import Category from "./components/Category";
-import Brand from "./components/Brand";
 import Price from "./components/Price";
-
-export default function Filter() {
+export default function Filter({ selectedCategories, setSelectedCategories }) {
   return (
     <div className="allproducts__leftPanelFilter">
       <div className="allproducts__leftPanelFilter__title">Filters</div>
-
-      <Category />
+      <Category
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+      />
       <Price />
     </div>
   );

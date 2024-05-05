@@ -48,8 +48,10 @@ import ChatList from "./pages/CustomerChat";
 import AdminDashboard from "./pages/AdminDashboard";
 import { useSelector } from "react-redux";
 import Testdashboard from "./pages/Testing/index";
-import Testing from "./pages/Testing/Testing";
+// import Testing from "./pages/Testing/Testing";
 import AdminHeader from "./pages/AdminDashboard/AdminNavbar";
+import RecommendationComponent from "./pages/RecommendedProducts";
+
 function App() {
   React.useEffect(() => {
     AOS.init();
@@ -61,11 +63,12 @@ function App() {
       <BrowserRouter>
         <Meta />
 
-        {/* <Testing /> */}
-        {/* <Header /> */}
+        {userInfo && userInfo.isAdmin ? <></> : <Header />}
+
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/Testing" element={<Testdashboard />} />
+          <Route path="/recommendation" element={<RecommendationComponent />} />
 
           <Route path="/register" element={<Signup />} />
           <Route path="/newsletter" element={<Newsletter />} />

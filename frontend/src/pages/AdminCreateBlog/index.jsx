@@ -9,7 +9,7 @@ import EditorToolbar, { modules, formats } from "./toolbar";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import myAnimation from "./ai.gif";
-import ai_icon from "./ai.png";
+
 import UseAnimations from "react-useanimations";
 import infinity from "react-useanimations/lib/infinity";
 
@@ -27,7 +27,7 @@ const CreatePost = () => {
   const genAI = new GoogleGenerativeAI(
     "AIzaSyCoZ7Oc7MxLX6K_2D55wJqZ7zqor9Awtt4"
   );
-
+  let request;
   useEffect(() => {
     const handleResize = () => {
       const form = document.getElementById("create-post-form");
@@ -48,43 +48,61 @@ const CreatePost = () => {
   const generatePrompt = async () => {
     try {
       let prompt = promptText;
+
       switch (selectedPrompt) {
-        case "Product Showcase":
-          prompt = `Introduce our flagship furniture product, highlighting its exquisite design, superior craftsmanship, and unique features. ${promptText}`;
+        case "Product Spotlight":
+          request = ` a captivating 1500-word blog spotlighting the heritage and craftsmanship of Pakistani handmade rugs. This blog is tailored for home decor enthusiasts seeking authentic inspiration to elevate their living spaces with cultural richness and timeless elegance. Utilize user-generated keywords to ensure SEO optimization and content relevance, focusing on topics such as the intricate patterns, vibrant colors, and cultural significance of these rugs. Set a conversational tone that invites readers on a visual journey, weaving engaging storytelling with informative details. Begin by introducing the historical and cultural context of Pakistani rugs, showcasing their versatility in modern and traditional interiors. Dive deeper into the craftsmanship techniques, highlighting the artisanal skills passed down through generations. Provide purchasing advice, design tips, and suggestions for incorporating these rugs into various room settings, evoking feelings of admiration and appreciation for the artistry behind each piece.`;
           break;
-        case "Interior Design Inspiration":
-          prompt = `Curate a collection of stunning interior design inspirations featuring our furniture pieces, tailored to different decor styles such as modern, minimalist, or eclectic. ${promptText}`;
+        case "Home Decor Trends":
+          request = ` an engaging 1500-word blog exploring the latest trends in Pakistani home decor. This blog is curated for interior design enthusiasts seeking fresh inspiration to infuse their homes with style and personality. Integrate user-generated keywords to enhance SEO and align the content with reader interests. Set a conversational tone that blends visual inspiration with expert insights and practical tips. Begin by introducing the evolving landscape of Pakistani home decor, highlighting the fusion of traditional motifs with contemporary design elements. Dive deeper into trending color palettes, furniture styles, and decor accessories, showcasing real-life examples and inspiring imagery. Provide actionable advice for incorporating these trends into different living spaces, from cozy apartments to spacious villas. Ensure a smooth flow that guides readers through diverse topics, sparking feelings of excitement and creativity as they embark on their own decor journeys.`;
           break;
-        case "Sustainable Furniture Solutions":
-          prompt = `Educate our audience about sustainable furniture practices, showcasing eco-friendly materials, production methods, and our commitment to environmental responsibility. ${promptText}`;
+        case "Sustainable Living Insights":
+          request = ` an informative 1500-word blog offering actionable insights and tips for embracing sustainable living practices in Pakistan. This blog is targeted at environmentally conscious individuals seeking practical guidance to reduce their ecological footprint and live in harmony with nature. Incorporate user-generated keywords to address specific interests and concerns, ensuring SEO optimization and content relevance. Set a friendly and informative tone that empowers readers to make positive changes in their daily lives. Begin by outlining the importance of sustainability in the Pakistani context, highlighting environmental challenges and opportunities for improvement. Dive deeper into eco-friendly solutions for energy conservation, waste reduction, and green living, providing practical tips, local resources, and success stories. Showcase innovative initiatives and community-driven projects that demonstrate the power of collective action. Ensure a logical flow that guides readers through topics such as sustainable home design, eco-friendly transportation, and ethical consumption, inspiring feelings of empowerment and optimism for a greener future.`;
           break;
-        case "Furniture Care & Maintenance Guide":
-          prompt = `Offer expert advice on furniture care and maintenance, covering cleaning techniques, stain removal, and protection measures for different types of materials like wood, leather, and upholstery. ${promptText}`;
+        case "Local Artisan Spotlight":
+          request = ` a compelling 1500-word blog highlighting the talent and creativity of Pakistani artisans across traditional crafts. This blog is designed for art enthusiasts and cultural aficionados eager to delve into the rich tapestry of Pakistan's artisanal heritage. Utilize user-generated keywords to ensure content alignment with reader interests, enhancing SEO optimization and relevance. Set a conversational and appreciative tone, showcasing the craftsmanship, cultural heritage, and artistic expression embodied in each handmade creation. Ensure a seamless flow that blends storytelling with visual imagery and interactive elements to foster appreciation and community engagement. Invite readers to explore the diverse world of Pakistani artisanal traditions, from pottery and woodworking to textile weaving and metalwork, evoking feelings of admiration and pride in the country's vibrant artisanal landscape.`;
           break;
-        case "Furniture Customization Ideas":
-          prompt = `Inspire creativity with a variety of furniture customization ideas, including DIY projects, color schemes, fabric choices, and decorative accents for a personalized touch. ${promptText}`;
+        case "Wedding Decor Inspiration":
+          request = ` an inspiring 1500-word blog offering creative decor ideas and design inspirations for Pakistani-themed weddings. Tailored for couples planning their special day, this blog invites readers on a journey of love, culture, and celebration. Integrate user-generated keywords to enhance SEO and personalize the content to resonate with reader interests. Set a warm and celebratory tone that evokes feelings of excitement and anticipation, blending curated concepts, styling tips, and practical advice. Begin by exploring the rich tapestry of Pakistani wedding traditions and cultural motifs, offering insights into incorporating them into modern wedding decor. Dive deeper into themes, color schemes, and decor elements inspired by Pakistani culture, showcasing real-life examples and inspiring imagery. Ensure a lively and engaging flow that invites reader interaction and collaboration, fostering a joyful and memorable wedding planning experience infused with the unique cultural identity of Pakistan.`;
           break;
-        case "Furniture Buying Tips for First-Time Homeowners":
-          prompt = `Provide valuable insights and guidance for first-time homeowners navigating the process of furnishing their space, addressing budgeting, space planning, quality considerations, and versatile furniture choices. ${promptText}`;
+        case "Home Buying Guide":
+          request = ` a comprehensive 1500-word guide for Pakistani homeowners embarking on the journey of furnishing and decorating their homes. Tailored to empower and inspire, this blog offers expert advice, product recommendations, and shopping tips to help readers create personalized living spaces that reflect their lifestyle and cultural identity. Utilize user-generated keywords to address specific needs, preferences, and budget considerations, enhancing SEO optimization and content relevance. Set a friendly and informative tone that engages readers from start to finish, providing actionable insights and practical guidance. Begin by outlining key considerations for home furnishing and decor, from space planning and furniture selection to color palettes and decor styling. Dive deeper into topics such as budgeting tips, shopping strategies, and DIY hacks, offering readers the tools and inspiration they need to transform their homes with confidence and creativity. Ensure a logical flow that guides readers through the home buying process with clarity and enthusiasm, evoking feelings of excitement and satisfaction as they embark on their home decor journey.`;
+          break;
+        case "Cultural Heritage Highlights":
+          request = `on an immersive 1500-word journey through Pakistan's cultural heritage, designed to captivate history buffs, travelers, and cultural enthusiasts alike. Utilize user-generated keywords to ensure content relevance and SEO optimization, enhancing the blog's discoverability and appeal. Set a captivating and informative tone that transports readers to the heart of Pakistan's rich cultural tapestry, weaving together vivid storytelling, captivating visuals, and interactive experiences. Begin by exploring the architectural marvels, historic landmarks, and cultural treasures that define Pakistan's diverse regions, offering insights into their historical significance and cultural legacy. Dive deeper into topics such as art, music, literature, and cuisine, showcasing the depth and diversity of Pakistan's cultural heritage. Invite readers to immerse themselves in the vibrant tapestry of Pakistani culture, fostering a sense of wonder and appreciation for the country's rich history and identity.`;
+          break;
+        case "Culinary Delights Showcase":
+          request = ` a mouthwatering 1500-word blog celebrating the flavors and aromas of Pakistani cuisine, designed to delight foodies and cooking enthusiasts. This blog invites readers on a culinary journey through the diverse culinary traditions and regional specialties of Pakistan, showcasing authentic recipes, cooking techniques, and culinary anecdotes. Utilize user-generated keywords to curate a culinary experience tailored to reader tastes and interests, enhancing SEO optimization and content relevance. Set a warm and inviting tone that evokes feelings of happiness and satisfaction with every bite, sharing stories of family gatherings, festive celebrations, and cherished food memories. Begin by exploring the rich tapestry of Pakistani cuisine, from aromatic curries and fragrant rice dishes to succulent kebabs and sweet desserts. Dive deeper into regional specialties and traditional cooking methods, offering readers the opportunity to savor the diverse flavors and cultural influences that shape Pakistani culinary identity. Ensure a flavorful and engaging flow that leaves readers inspired to explore the world of Pakistani cuisine with curiosity and enthusiasm.`;
           break;
         default:
           break;
       }
+      const generationConfig = {
+        stopSequences: ["red"],
+        maxOutputTokens: 70000,
+        temperature: 0.9,
+        topP: 0.1,
+        topK: 16,
+      };
+      const model = genAI.getGenerativeModel(
+        { model: "gemini-pro" },
+        generationConfig
+      );
 
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      const result = await model.generateContent(
-        "can you generate a really good detailed seo optimized blog outline by using the following blog nature and keywords, make sure the prompt you generate is of high quality" +
-          prompt
+      const userPrompt = `Write an outline keeping in mind these keywords, ${promptText}, make sure you include them heading and outline should revolve the keywords and the general strucuture would be  ${request}`;
+      console.log(userPrompt);
+      const userMessage = await model.generateContent(userPrompt);
+
+      const userResponse = await userMessage.response.text();
+      console.log("First Response:", userResponse);
+
+      const modelMessage = await model.generateContent(
+        `Write a full fledged 2000 SEO optimized words article on the following outline? ${userResponse}, make sure each heading is detailed, dont stop until you reach 2000 words `
       );
-      const response = result.response.text();
-      console.log(response);
-      const blog = await model.generateContent(
-        "Write an engaging seo optimized blog using the following outline, the blog should be of around 1000 words" +
-          response
-      );
-      console.log(blog.response.text());
-      const ideas = blog.response.text();
-      setContent(ideas);
+
+      const blogContent = modelMessage.response.text();
+
+      setContent(blogContent);
       setShowicon(true);
     } catch (error) {
       console.error("Error generating prompt:", error);
@@ -197,21 +215,23 @@ const CreatePost = () => {
                 }}
               >
                 <option value="">Select Prompt</option>
-                <option value="Product Showcase">Product Showcase</option>
-                <option value="Interior Design Inspiration">
-                  Interior Design Inspiration
+                <option value="Product Spotlight">Product Spotlight</option>
+                <option value="Home Decor Trends">Home Decor Trends</option>
+                <option value="Sustainable Living Insights">
+                  Sustainable Living Insights
                 </option>
-                <option value="Sustainable Furniture Solutions">
-                  Sustainable Furniture Solutions
+                <option value="Local Artisan Spotlight">
+                  Local Artisan Spotlight
                 </option>
-                <option value="Furniture Care & Maintenance Guide">
-                  Furniture Care & Maintenance Guide
+                <option value="Wedding Decor Inspiration">
+                  Wedding Decor Inspiration
                 </option>
-                <option value="Furniture Customization Ideas">
-                  Furniture Customization Ideas
+                <option value="Home Buying Guide">Home Buying Guide</option>
+                <option value="Cultural Heritage Highlights">
+                  Cultural Heritage Highlights
                 </option>
-                <option value="Furniture Buying Tips for First-Time Homeowners">
-                  Furniture Buying Tips for First-Time Homeowners
+                <option value="Culinary Delights Showcase">
+                  Culinary Delights Showcase
                 </option>
               </select>
             </div>

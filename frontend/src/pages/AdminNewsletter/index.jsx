@@ -154,7 +154,7 @@ const Newsletter = () => {
                               padding: "8px 16px",
                               fontSize: "14px",
                               borderRadius: "50px",
-                              backgroundColor: "black",
+                              backgroundColor: "#0069F7",
                               color: "white",
                               border: "none",
                               cursor: "pointer",

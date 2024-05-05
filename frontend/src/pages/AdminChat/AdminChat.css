@@ -11,7 +11,7 @@
 
 /* Search Bar */
 .search-bar {
-  background-color: #ffffff;
+  background-color: #0069f7;
   border-radius: 20px; /* Make the search bar round */
   padding: 10px;
   margin-bottom: 20px;
@@ -23,7 +23,7 @@
   border: none;
   outline: none;
   font-size: 14px;
-  color: #333333;
+  color: white;
 }
 
 .chatlist ul {
@@ -64,7 +64,13 @@
 .search-icon {
   position: relative;
   left: 10px;
-  color: black;
+  color: #f0f2de;
+}
+
+.chat-header {
+  font-size: 26px;
+  margin: 20px;
+  font-style: bold;
 }
 
 .chatlist {
@@ -89,7 +95,7 @@
   border: none;
   outline: none;
   font-size: 14px;
-  color: #333333;
+  color: white;
   border-radius: 20px; /* Ensure input field has round edges */
   background: transparent;
   /* Ensure background is transparent to see icon */
@@ -115,7 +121,7 @@
   width: 40px; /* Adjust the size of the circle */
   height: 40px; /* Adjust the size of the circle */
   border-radius: 50%; /* Create a circle */
-  background-color: #ccc; /* Set the background color */
+  background-color: #0069f7; /* Set the background color */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -22,10 +22,10 @@ export default function Checkout({ cartItems }) {
   return (
     <div className="cart_checkout">
       <h1 className="cart_checkout__subtotal">
-        Subtotal: $
+        Subtotal: Rs
         {cartItems
           .reduce((init, a) => {
-            return init + (a.price * a.qty) / 100;
+            return init + a.price * a.qty;
           }, 0)
           .toFixed(2)}
       </h1>

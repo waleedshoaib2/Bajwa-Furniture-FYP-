@@ -2,8 +2,20 @@
   height: 89.6vh;
   overflow: hidden;
   padding: 30px 0;
-  background: #f5f5f5;
-  margin-top: 150px;
+  background: #f0f2de;
+  margin-top: 120px;
+  margin-left: 2px;
+
+  margin-right: 30px;
+}
+.message-area-chatlist {
+  height: 89.6vh;
+  overflow: auto;
+  padding: 30px 0;
+  background: #f0f2de;
+  margin-top: 120px;
+  margin-left: 30px;
+  border-radius: 10px;
 }
 
 .chat-area {
@@ -49,8 +61,8 @@
 }
 
 .msg-body ul li.sender p {
-  background-color: #000;
-  color: #fff;
+  background-color: white;
+  color: black;
   border-radius: 10px;
   padding: 10px;
   margin: 0 0 15px auto;
@@ -60,8 +72,8 @@
 }
 
 .msg-body ul li.receiver p {
-  background-color: #ccc;
-  color: #000;
+  background-color: #0069f7;
+  color: white;
   border-radius: 10px;
   padding: 10px;
   margin: 0 auto 15px 0;
@@ -91,7 +103,7 @@
 
 .btn-primary {
   border-radius: 20px;
-  background-color: #000;
+  background-color: #0069f7;
   color: #fff;
   padding: 10px 20px;
   border: none;

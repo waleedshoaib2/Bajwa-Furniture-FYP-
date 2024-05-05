@@ -12,11 +12,8 @@ const opts = {
 
 passport.use(
   new JwtStrategy(opts, (jwtPayload, done) => {
-    console.log("JWT Payload", jwtPayload); // Detailed payload data
-
     User.findById(jwtPayload.userId)
       .then((user) => {
-        console.log("User found in database:", user); // Did we find a user?
         if (user) {
           return done(null, user);
         } else {

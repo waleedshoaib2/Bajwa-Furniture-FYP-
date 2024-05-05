@@ -7,19 +7,19 @@ export default function AddCart({ productInfo }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  console.log(productInfo);
+
   function addToCartHandler(e) {
     console.log(e);
     e.preventDefault();
     window.scrollTo(0, 0);
-    dispatch(addToCart(productInfo, 1)); // Always add one unit to the cart
+    dispatch(addToCart(productInfo, 1));
     navigate("/cart");
   }
 
   return (
     <div className="productDetailPage__pricesContainer">
-      <div className="productDetailPage__price">
-        $ {productInfo.price / 100}
-      </div>
+      <div className="productDetailPage__price">Rs {productInfo.price}</div>
       <div className="productDetailPage__addCart">
         <h1 className="black-rounded-button" onClick={addToCartHandler}>
           Add To Cart

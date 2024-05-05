@@ -12,10 +12,7 @@ export default function CartPage() {
   return (
     <>
       <Meta title="Shopping Cart" />
-      <Alert severity="info" style={{ width: "100%", marginBottom: "20px" }}>
-        Checkout Info: Use card number 4242 4242 4242 4242, An Valid Furture
-        Date, and Any three-digit CVC.
-      </Alert>
+
       <div className="shoppingCart">
         <h1 className="shoppingCart__title">Shopping Cart</h1>
         <Cart cartItems={cartItems} />

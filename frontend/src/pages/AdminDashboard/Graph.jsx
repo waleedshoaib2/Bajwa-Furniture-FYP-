@@ -5,10 +5,10 @@ import {
   BsPeopleFill,
   BsFillBellFill,
 } from "react-icons/bs";
+import "./Graph.css";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -16,9 +16,9 @@ import {
   Legend,
   ResponsiveContainer,
   LineChart,
+  Line,
   Area,
   AreaChart,
-  Line,
   Pie,
   PieChart,
 } from "recharts";
@@ -125,35 +125,35 @@ function Main() {
   return (
     <main className="main-container">
       <div className="main-title">
-        <h3>DASHBOARD</h3>
+        <h3>Welcome back</h3>
       </div>
 
       <div className="main-cards">
-        <div className="card">
+        <div className="card card-products">
           <div className="card-inner">
             <h3>PRODUCTS</h3>
-            <BsFillArchiveFill className="card_icon" />
+            <BsFillArchiveFill className="card_icon icon-products" />
           </div>
           <h1>300</h1>
         </div>
-        <div className="card">
+        <div className="card card-categories">
           <div className="card-inner">
             <h3>CATEGORIES</h3>
-            <BsFillGrid3X3GapFill className="card_icon" />
+            <BsFillGrid3X3GapFill className="card_icon icon-categories" />
           </div>
           <h1>12</h1>
         </div>
-        <div className="card">
+        <div className="card card-customers">
           <div className="card-inner">
             <h3>CUSTOMERS</h3>
-            <BsPeopleFill className="card_icon" />
+            <BsPeopleFill className="card_icon icon-customers" />
           </div>
           <h1>33</h1>
         </div>
-        <div className="card">
+        <div className="card card-orders">
           <div className="card-inner">
             <h3>ORDERS</h3>
-            <BsFillBellFill className="card_icon" />
+            <BsFillBellFill className="card_icon icon-orders" />
           </div>
           <h1>42</h1>
         </div>
@@ -172,13 +172,13 @@ function Main() {
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="2 2" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="#000000" />
-            <Bar dataKey="uv" fill="#808080" />
+            <Bar dataKey="pv" fill="#0069F7" />
+            <Bar dataKey="uv" fill="#F44336" />
           </BarChart>
         </ResponsiveContainer>
 
@@ -202,10 +202,10 @@ function Main() {
             <Line
               type="monotone"
               dataKey="pv"
-              stroke="#808080"
+              stroke="#F44336"
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="uv" stroke="#000000" />
+            <Line type="monotone" dataKey="uv" stroke="#0069F7" />
           </LineChart>
         </ResponsiveContainer>
         <ResponsiveContainer>
@@ -217,12 +217,12 @@ function Main() {
           >
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#000000" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#000000" stopOpacity={0} />
+                <stop offset="5%" stopColor="#C02FF3" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#0069F7" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#808080" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#808080" stopOpacity={0} />
+                <stop offset="5%" stopColor="#F44336" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#F44336" stopOpacity={0} />
               </linearGradient>
             </defs>
             <XAxis dataKey="name" />
@@ -232,7 +232,7 @@ function Main() {
             <Area
               type="monotone"
               dataKey="uv"
-              stroke="#000000"
+              stroke="#F44336"
               fillOpacity={1}
               fill="url(#colorUv)"
             />
@@ -246,7 +246,7 @@ function Main() {
           </AreaChart>
         </ResponsiveContainer>
         <ResponsiveContainer>
-          <PieChart width={730} height={250}>
+          <PieChart width={730} height={550}>
             <Pie
               data={data01}
               dataKey="value"
@@ -254,7 +254,7 @@ function Main() {
               cx="50%"
               cy="50%"
               outerRadius={50}
-              fill="#808080"
+              fill="#0069F7"
             />
             <Pie
               data={data02}
@@ -264,7 +264,7 @@ function Main() {
               cy="50%"
               innerRadius={60}
               outerRadius={80}
-              fill="#000000"
+              fill="#F44336"
               label
             />
           </PieChart>

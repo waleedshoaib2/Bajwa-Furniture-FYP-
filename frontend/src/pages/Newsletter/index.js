@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import "./newsletter.css";
 
 const Newsletter = () => {
-  let { userInfo } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.user);
   const [email, setEmail] = useState("");
 
   const sendTokenToBackend = async () => {
+    if (!userInfo) {
+      // If user is not logged in, show toast message
+      toast.error("Please login to subscribe to the newsletter", {
+        position: "top-right",
+      });
+      return;
+    }
+
     try {
       const response = await axios.put(
         "http://localhost:4000/user/newsletter",
@@ -20,101 +26,69 @@ const Newsletter = () => {
           email: email,
         },
         {
-          // Config object for headers
           headers: {
-            Authorization: `Bearer ${userInfo.token}`, // Correct header format
+            Authorization: `Bearer ${userInfo.token}`,
           },
         }
       );
-      console.log("Token and email sent successfully:", response);
-      toast.success("response.data", {
-        position: "top-right", // String value for position
-      });
+
+      console.log("Response from server:", response);
+
+      if (response.status === 200) {
+        if (response.data.message === "You already have subscribed") {
+          toast.info("You're already subscribed!", {
+            position: "top-right",
+          });
+        } else if (
+          response.data.message === "Newsletter subscription updated"
+        ) {
+          toast.success("Subscription successful!", {
+            position: "top-right",
+          });
+        } else if (
+          response.data.message === "Email you signed up with is different"
+        ) {
+          toast.error("Email you signed up with is different", {
+            position: "top-right",
+          });
+        }
+      } else {
+        toast.error("Failed to subscribe. Please try again later.", {
+          position: "top-right",
+        });
+      }
     } catch (error) {
       console.error("Error sending token and email:", error);
+      toast.error("Failed to subscribe. Please try again later.", {
+        position: "top-right",
+      });
     }
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        padding: "16px 4px",
-        color: "black",
-        border: "1px solid black",
-        backgroundColor: "white",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "800px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+    <div className="newsletter-container">
+      <div className="newsletter-content">
         <img
           src="https://w0.peakpx.com/wallpaper/461/480/HD-wallpaper-chairs-furniture-interior.jpg"
           alt="Your Product"
-          style={{
-            width: "550px",
-            height: "600px",
-            marginRight: "20px",
-          }}
+          className="newsletter-image"
         />
-        <div>
-          <h1
-            style={{
-              // fontSize: "6xl",
-              fontWeight: "bold",
-              fontSize: "20px",
-              // paddingBottom: "2px",
-            }}
-          >
+        <div className="newsletter-info">
+          <h1 className="newsletter-title">
             Want to keep up with our latest products?
           </h1>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <div className="newsletter-input">
             <input
-              style={{
-                padding: "3px",
-                marginTop: "20px",
-                flex: 1,
-                color: "black",
-                fontstyle: "italics",
-              }}
               type="email"
               placeholder="Enter Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
-            <button
-              style={{
-                backgroundColor: "black",
-                color: "white",
-                fontWeight: "light",
-                width: "180px",
-                marginLeft: "90px",
-                marginTop: "10px",
-                padding: "6px 3px",
-              }}
-              onClick={sendTokenToBackend}
-            >
-              Notify Me
-            </button>
-            <ToastContainer />
+          <div className="newsletter-button">
+            <button onClick={sendTokenToBackend}>Notify Me</button>
           </div>
+          <ToastContainer />
         </div>
       </div>
     </div>

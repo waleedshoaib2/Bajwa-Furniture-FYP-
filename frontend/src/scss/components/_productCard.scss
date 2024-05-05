@@ -3,12 +3,12 @@
 .productCard_primary {
   width: 100%;
   padding: 20px;
-  height: 250px;
+  height: 200px;
   position: relative;
   cursor: pointer;
 
   @include breakpoint("lg") {
-    height: 350px;
+    height: 450px;
   }
 
   @include breakpoint("lg") {
@@ -16,15 +16,15 @@
   }
 
   @include breakpoint("lg") {
-    height: 550px;
+    height: 450px;
   }
 
   h1 {
     margin-top: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 
     @include breakpoint("lg") {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   }
 

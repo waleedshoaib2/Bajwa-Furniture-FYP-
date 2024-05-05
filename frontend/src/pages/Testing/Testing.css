@@ -1,13 +1,19 @@
 .sidebar {
-  background-color: #111;
-  color: #fff;
-  width: 280px; /* Adjust the width as needed */
+  background-color: #262a2e;
+  color: #989a9c;
+  width: 20%;
   height: auto;
-  transition: width 0.4s ease; /* Use ease timing function for smoother animation */
-  padding-top: 60px;
+  transition: width 0.4s ease;
   font-family: Arial, sans-serif;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4); /* Add box shadow */
-  border-radius: 2px; /* Make the borders smoother */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
 .sidebar.collapsed {
@@ -20,14 +26,11 @@
   color: #fff;
   font-size: 24px;
   cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  transition: transform 0.2s ease; /* Reduce animation duration */
+  transition: transform 0.3s ease;
 }
 
 .toggle-btn:hover {
-  transform: scale(1.1); /* Scale up on hover for better visual feedback */
+  transform: scale(1.4);
 }
 
 .menu-items {
@@ -40,7 +43,7 @@
 .menu-items li {
   padding: 10px;
   border-bottom: 1px solid #333;
-  transition: border-color 0.3s ease; /* Add transition for border color */
+  transition: border-color 0.6s ease;
 }
 
 .menu-items li:last-child {
@@ -48,16 +51,17 @@
 }
 
 .menu-items a {
-  color: #fff;
+  color: #9a9c9e;
   text-decoration: none;
   display: flex;
   align-items: center;
   font-size: 20px;
-  margin-bottom: 20px; /* Adjusted font size */
-  transition: background-color 0.3s ease; /* Add transition effect */
+  margin-bottom: 20px;
+  /* transition: background-color 0.3s ease; */
 }
+
 .menu-items a:hover {
-  color: grey; /* Change text color on hover */
+  transform: scale(1.2);
 }
 
 .menu-items a span {
@@ -65,7 +69,17 @@
 }
 
 .menu-items li:hover {
-  padding: 15px; /* Increase padding on hover */
-  background-color: #333; /* Change background color on hover */
-  transition: padding 0.3s ease, background-color 0.3s ease; /* Add transition effect */
+  padding: 15px;
+  background-color: #333;
+  transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+.logo-bf {
+  transition: width 0.4s ease, height 0.4s ease, padding 0.4s ease;
+}
+
+.collapsed .logo-bf {
+  width: 0;
+  height: 0;
+  padding: 0;
 }

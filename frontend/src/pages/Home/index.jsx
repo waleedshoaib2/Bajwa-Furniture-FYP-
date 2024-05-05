@@ -1,5 +1,4 @@
 import React from "react";
-import { getRecommendProducts } from "../../lib/axiosAPI";
 import HomeLanding from "./HomeLanding";
 import HomeAbout from "./HomeAbout";
 import HomeAboutMaterials from "./HomeAboutMaterials";

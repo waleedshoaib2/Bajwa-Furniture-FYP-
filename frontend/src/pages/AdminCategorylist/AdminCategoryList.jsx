@@ -63,9 +63,7 @@ export default function AdminCategoryList() {
   return (
     <>
       <div style={{ display: "flex" }}>
-        <div>
-          <Testing />
-        </div>
+        <Testing />
 
         <div className="admin-list">
           <DisplayPending pending={pending} />

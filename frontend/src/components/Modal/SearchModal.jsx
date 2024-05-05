@@ -4,11 +4,15 @@ import ModalBody from "./ModalBody";
 import axios from "axios";
 import { FaUpload, FaSearch } from "react-icons/fa";
 import HeaderIcon from "../Header/HeaderIcon";
+import { useSelector } from "react-redux";
+
 export default function SearchModal({ openModal, setOpenModal }) {
   const navigate = useNavigate();
   const [searchProduct, setSearchProduct] = useState("");
   const [file, setFile] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const userInfo = useSelector((state) => state.user);
+
   useEffect(() => {
     if (searchResults && searchResults.length > 0) {
       console.log("the data is of ", searchResults);

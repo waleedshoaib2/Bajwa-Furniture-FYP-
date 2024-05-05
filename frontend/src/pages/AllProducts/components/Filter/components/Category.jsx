@@ -1,5 +1,5 @@
-import React from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { ListItemButton, ListItemText, Collapse, List } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import FilterCheckBox from "./FilterCheckBox";
@@ -10,49 +10,35 @@ const ListItemstyle = {
   paddingBottom: "20px",
 };
 
-export default function Category() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [openCategory, setOpenCategory] = React.useState(false);
-  const [category, setCategory] = React.useState({
-    Sofas: false,
-    "Media Storage": false,
-    Desks: false,
-    Beds: false,
-    Chairs: false,
-  });
+export default function Category({
+  selectedCategories,
+  setSelectedCategories,
+}) {
+  const [categories, setCategories] = useState([]);
+  const [openCategory, setOpenCategory] = useState(false);
 
-  const firstUpdate = React.useRef(true);
-  React.useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      let params = searchParams.get("category");
-      if (params) {
-        let valArray = params.split("_");
-        for (let i in valArray) {
-          if (category[valArray[i]] !== undefined) {
-            setCategory((prev) => {
-              return { ...prev, [valArray[i]]: true };
-            });
-          }
-        }
-      }
-      return;
-    }
-
-    let categoryQuery = "";
-    for (let i in category) {
-      if (category[i]) {
-        categoryQuery = categoryQuery + `${i}_`;
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const response = await axios.get("http://localhost:4000/categories/");
+        console.log(response.data);
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
       }
     }
+    fetchCategories();
+  }, []);
 
-    if (categoryQuery === "") {
-      searchParams.delete("category");
+  const handleCategoryChange = (categoryId, isChecked) => {
+    if (isChecked) {
+      setSelectedCategories([...selectedCategories, categoryId]);
     } else {
-      searchParams.set("category", categoryQuery);
+      setSelectedCategories(
+        selectedCategories.filter((category) => category !== categoryId)
+      );
     }
-    setSearchParams(searchParams);
-  }, [category, searchParams, setSearchParams]);
+  };
 
   return (
     <>
@@ -72,68 +58,17 @@ export default function Category() {
       </ListItemButton>
       <Collapse in={openCategory} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {/* Sofas */}
-          <ListItemButton
-            onChange={(e) => {
-              setCategory({
-                ...category,
-                Sofas: !category.Sofas,
-              });
-            }}
-          >
-            <FilterCheckBox label="Sofas" checked={category.Sofas} />
-          </ListItemButton>
-
-          {/* Desks */}
-          <ListItemButton
-            onChange={(e) => {
-              setCategory({
-                ...category,
-                Desks: !category.Desks,
-              });
-            }}
-          >
-            <FilterCheckBox label="Desks" checked={category.Desks} />
-          </ListItemButton>
-
-          {/* Chairs */}
-          <ListItemButton
-            onChange={(e) => {
-              setCategory({
-                ...category,
-                Chairs: !category["Chairs"],
-              });
-            }}
-          >
-            <FilterCheckBox label="Chairs" checked={category["Chairs"]} />
-          </ListItemButton>
-
-          {/* Beds */}
-          <ListItemButton
-            onChange={(e) => {
-              setCategory({
-                ...category,
-                Beds: !category.Beds,
-              });
-            }}
-          >
-            <FilterCheckBox label="Beds" checked={category["Beds"]} />
-          </ListItemButton>
-
-          {/* Media Storage */}
-          <ListItemButton
-            onChange={(e) => {
-              setCategory({
-                ...category,
-                "Media Storage": !category["Media Storage"],
-              });
-            }}
-          >
-            <FilterCheckBox
-              label="Media Storage"
-              checked={category["Media Storage"]}
-            />
-          </ListItemButton>
+          {categories.map((category) => (
+            <ListItemButton key={category._id}>
+              <FilterCheckBox
+                label={category.name}
+                onChange={(isChecked) =>
+                  handleCategoryChange(category._id, isChecked)
+                }
+                checked={selectedCategories.includes(category._id)}
+              />
+            </ListItemButton>
+          ))}
         </List>
       </Collapse>
     </>

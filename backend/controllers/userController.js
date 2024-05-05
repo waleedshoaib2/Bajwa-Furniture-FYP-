@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
-import User from "../models/userModel.js"; // Import your user model
+import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
 import dotenv from "dotenv";
-import e from "express";
-dotenv.config(); // Add this at the top of your controller file
 
-export const news = async (req, res) => {
+dotenv.config();
+
+export const subscribetoNewsletter = async (req, res) => {
   console.log(req.user._id);
   const userId = req.user._id.toString();
   const { email } = req.body;
@@ -21,15 +19,20 @@ export const news = async (req, res) => {
     console.log(email);
     console.log(!(user.email === email));
     if (user.email === email) {
-      user.newsletterSubscribed = true;
-      await user.save(); // Save changes to the database
-      res.status(200).json({ message: "Newsletter subscription updated" }); // More accurate status code
+      if (user.newsletterSubscribed === true) {
+        res.status(200).json({ message: "You already have subscribed" });
+      } else {
+        user.newsletterSubscribed = true;
+        console.log("running till here");
+        await user.save();
+        res.status(200).json({ message: "Newsletter subscription updated" });
+      }
     } else {
       return res.json({ message: "Email you signed up with is different" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: error.message });
   }
 };
 
