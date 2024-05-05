@@ -33,7 +33,7 @@ export default function LoginPage() {
     if (userInfo) {
       console.log(userInfo);
       if (userInfo.isAdmin) {
-        navigate("/dashboard");
+        navigate("/testing");
       } else {
         navigate(`/${redirect}`);
         toast.success("Login successful!");

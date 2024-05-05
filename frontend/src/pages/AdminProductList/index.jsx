@@ -62,9 +62,8 @@ export default function AdminProductList() {
   return (
     <>
       <div style={{ display: "flex" }}>
-        <div>
-          <Testing />
-        </div>
+        <Testing />
+
         <div className="admin-list">
           <DisplayPending pending={pending} />
           <div className="admin-list__container">
@@ -94,7 +93,7 @@ export default function AdminProductList() {
                     <tr key={product._id}>
                       <td>{product._id}</td>
                       <td>{product.name}</td>
-                      <td>$ {product.price}</td>
+                      <td>Rs {product.price}</td>
                       <td>{product.category}</td>
                       <td>
                         <img

@@ -65,7 +65,7 @@ export default function Cart({ cartItems }) {
                 </div>
 
                 <h2 className="cart_listing__text">
-                  $ {((product.price * product.qty) / 100).toFixed(2)}
+                  Rs {(product.price * product.qty).toFixed(2)}
                 </h2>
                 <h2
                   className="cart_listing__remove"

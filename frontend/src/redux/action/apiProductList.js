@@ -5,12 +5,12 @@ import {
   productListReset,
 } from "../slices/productListSlice";
 import axios from "axios";
-
 export const getProductList = async (
   dispatch,
   search = "",
   minPriceQuery = "",
-  maxPriceQuery = ""
+  maxPriceQuery = "",
+  categories = [] // Include categories parameter
 ) => {
   if (search === null) {
     search = "";
@@ -21,10 +21,14 @@ export const getProductList = async (
   dispatch(updateProductStart());
 
   try {
+    // Convert categories array to comma-separated string
+    const categoriesQuery = categories.join(",");
+
     const result = await axios.get(
       `http://localhost:4000/product/CustomerGetProduct/?search=${search}` +
         `&minPriceQuery=${minPriceQuery}` +
-        `&maxPriceQuery=${maxPriceQuery}`
+        `&maxPriceQuery=${maxPriceQuery}` +
+        `&categories=${categoriesQuery}` // Add categories to the query
     );
 
     dispatch(updateProductSuccess(result.data));

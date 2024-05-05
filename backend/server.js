@@ -7,6 +7,7 @@ import "./config/passport.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import userinteractionRoutes from "./routes/userinteractionRoutes.js";
 // import path from "path";
 
 import orderRoutes from "./routes/orderRoutes.js";
@@ -14,7 +15,7 @@ import stripeRoutes from "./routes/stripeRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import { Server } from "socket.io";
-
+import recommendationRoutes from "./routes/recommendationRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 
 const app = express();
@@ -31,7 +32,6 @@ const __dirname = dirname(__filename);
 
 app.set("views", path.join(__dirname, "views"));
 
-// Set EJS as the view engine
 app.set("view engine", "ejs");
 app.use(passport.initialize());
 
@@ -40,7 +40,6 @@ app.use("/stripe", stripeRoutes);
 app.use(express.json());
 
 app.get("/blog/:postId", (req, res) => {
-  // Fetch blog post data (replace with your database logic)
   const postData = findPostById(req.params.postId);
   res.render("blog-post.ejs", { post: postData });
 });
@@ -50,10 +49,11 @@ app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/reviews", reviewRoutes);
-
+app.use("/recommendation", recommendationRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/blogs/", blogRoutes);
+app.use("/api/userinteraction", userinteractionRoutes);
 
 const httpServer = app.listen(4000, () => {
   console.log("Server is running at http://localhost:4000");
@@ -65,14 +65,13 @@ const io = new Server(httpServer, {
     methods: ["GET", "POST"],
   },
 });
-// sendNewsletters();
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("joinChat", (chatId) => {
     socket.join(chatId);
-    console.log(`User ${socket.id} joined chat ${chatId}`); // Add logging
+    console.log(`User ${socket.id} joined chat ${chatId}`);
   });
 
   socket.on("sendMessage", (chatId, messageData) => {

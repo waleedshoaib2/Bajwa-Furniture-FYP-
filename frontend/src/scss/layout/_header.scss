@@ -1,24 +1,27 @@
 @use "../abstracts" as *;
 
 .header {
+  position: fixed; /* Add this */
+  top: 0; /* Add this */
+  z-index: 100; /* Add this */
   display: flex;
   justify-content: space-between;
-  height: 90px;
+  height: 80px;
   width: 100%;
   background-color: white;
-  // color: white;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  margin-bottom: 80px;
 
   &__container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
   &__account-text {
     width: 25px;
     margin: 0 5px;
-    font-size: x-small;
+    font-size: large;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -46,8 +49,9 @@
   align-items: center;
   font-size: x-small;
   font-weight: 600;
+  color: black;
   margin: 0px 6px;
-  cursor: pointer;
+  // cursor: pointer;
   position: relative;
 
   &:first-of-type {
@@ -84,6 +88,6 @@
   }
 }
 .logo-bf {
-  height: 140px;
-  width: 140px;
+  height: 160px;
+  width: 160px;
 }

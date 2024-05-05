@@ -8,25 +8,31 @@ import {
   FaEnvelope,
   FaAngleLeft,
   FaAngleRight,
-  FaCommentAlt, // New icon for Chat Support
-  FaUserFriends, // New icon for Customers
+  FaCommentAlt,
+  FaUserFriends,
   FaShoppingCart,
-  FaSignOutAlt, // New icon for Orders
+  FaSignOutAlt,
 } from "react-icons/fa";
-import "./Testing.css"; // CSS file for styling
+import "./Testing.css";
 import lightlogo from "./Lightlogo.svg";
+import { useDispatch } from "react-redux";
+
+import { logout } from "../../redux/action/apiUserAction";
+
 const Testing = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const dispatch = useDispatch();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <div className={`sidebar ${isSidebarOpen ? "" : "collapsed"}`}>
       <div className="sidebar-header">
         <img className="logo-bf" height={100} src={lightlogo} alt="logo" />
-        <div className="logo"></div>
         <button className="toggle-btn" onClick={toggleSidebar}>
           {isSidebarOpen ? <FaAngleLeft /> : <FaAngleRight />}
         </button>
@@ -34,7 +40,7 @@ const Testing = () => {
       <ul className="menu-items">
         <li>
           <Link to="/admin/chat">
-            <FaCommentAlt /> {/* Icon for Chat Support */}
+            <FaCommentAlt />
             {isSidebarOpen && <span>Chat Support</span>}
           </Link>
         </li>
@@ -46,13 +52,13 @@ const Testing = () => {
         </li>
         <li>
           <Link to="/orders">
-            <FaShoppingCart /> {/* Icon for Orders */}
+            <FaShoppingCart />
             {isSidebarOpen && <span>Orders</span>}
           </Link>
         </li>
         <li>
           <Link to="/customers">
-            <FaUserFriends /> {/* Icon for Customers */}
+            <FaUserFriends />
             {isSidebarOpen && <span>Customers</span>}
           </Link>
         </li>
@@ -81,7 +87,7 @@ const Testing = () => {
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/" onClick={logoutHandler}>
             <FaSignOutAlt />
             {isSidebarOpen && <span>Logout</span>}
           </Link>

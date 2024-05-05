@@ -1,14 +1,24 @@
 import BlogPost from "../models/blogModel.js";
 
-// Get all blog posts
 export const getAllPosts = async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = 6;
+  const skip = (page - 1) * limit;
+
   try {
-    const posts = await BlogPost.find().sort({ date: -1 });
-    res.json(posts);
+    const posts = await BlogPost.find()
+      .sort({ date: -1 })
+      .skip(skip)
+      .limit(limit);
+    const totalPosts = await BlogPost.countDocuments();
+    const totalPages = Math.ceil(totalPosts / limit);
+
+    res.json({ posts, totalPages });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 export const getPostById = async (req, res) => {
   try {
     const post = await BlogPost.findById(req.params.id);

@@ -34,7 +34,6 @@ export const createProduct = async (req, res) => {
 export const getProductsCustomer = async (req, res) => {
   let filterKeyword = [{}];
 
-  console.log(req.query.maxPriceQuery);
   if (req.query.minPriceQuery && req.query.minPriceQuery !== "null") {
     filterKeyword.push({
       price: { $gt: parseInt(req.query.minPriceQuery) },
@@ -45,6 +44,7 @@ export const getProductsCustomer = async (req, res) => {
       price: { $lt: parseInt(req.query.maxPriceQuery) },
     });
   }
+
   const keyword =
     req.query.search && req.query.search !== "null"
       ? [
@@ -54,7 +54,6 @@ export const getProductsCustomer = async (req, res) => {
               $options: "i",
             },
           },
-
           {
             description: {
               $regex: req.query.search,
@@ -64,15 +63,29 @@ export const getProductsCustomer = async (req, res) => {
         ]
       : [{}];
 
+  const categoryFilter =
+    req.query.categories && req.query.categories !== "null"
+      ? { category: { $in: req.query.categories.split(",") } }
+      : {};
+
+  const sortOptions = {
+    bestmatch: {}, // Default sort option
+    ascprice: { price: 1 }, // Sort by price low to high
+    descprice: { price: -1 }, // Sort by price high to low
+    rating: { rating: -1 }, // Sort by customer rating
+  };
+
+  const sortOption = sortOptions[req.query.sortBy] || {}; // Get the sort option based on the requested sortBy parameter
+
   try {
-    console.log(filterKeyword);
-    let products = await Product.find({
-      $and: [{ $or: keyword }, { $and: filterKeyword }],
-    });
+    const products = await Product.find({
+      $and: [{ $or: keyword }, { $and: filterKeyword }, categoryFilter],
+    }).sort(sortOption);
 
     res.json({ products });
-  } catch {
-    res.status(404).json({ message: "Products not found" });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 

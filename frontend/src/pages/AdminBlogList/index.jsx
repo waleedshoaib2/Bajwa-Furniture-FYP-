@@ -19,7 +19,8 @@ export default function AdminGetBlogList() {
   const fetchBlogs = async () => {
     try {
       const response = await axios.get("http://localhost:4000/api/blogs/posts");
-      setBlogs(response.data);
+      setBlogs(response.data.posts);
+      console.log(response.data.posts);
       setPending(false);
     } catch (error) {
       setPending(false);
@@ -60,9 +61,8 @@ export default function AdminGetBlogList() {
   return (
     <>
       <div style={{ display: "flex" }}>
-        <div>
-          <Testing />
-        </div>
+        <Testing />
+
         <div className="admin-list">
           <DisplayPending pending={pending} />
           <div className="admin-list__container">

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { adminCreateProduct } from "../../lib/axiosAPI";
 import DisplayPending from "../../components/DisplayPending";
 import Alert from "@mui/material/Alert";
+import Testing from "../Testing/Testing";
 
 export default function AdminCreateProduct() {
   const dispatch = useDispatch();
@@ -75,122 +76,130 @@ export default function AdminCreateProduct() {
   }, []);
 
   return (
-    <div className="auth">
-      <DisplayPending pending={pending} />
-      <form className="adminCreateProduct__container" onSubmit={submitHandler}>
-        {createSuccess ? (
-          <Alert severity="success">Upload Succeed</Alert>
-        ) : error ? (
-          <Alert severity="error">{error}</Alert>
-        ) : null}
-
-        <div className="auth__title">Create new Product</div>
-        <div className="auth__input__container">
-          <label htmlFor="update_name">Product No: </label>
-          <input
-            id="update_productno"
-            type="text"
-            onChange={(e) => setProductno(e.target.value)}
-            value={productno}
-            required
-          />
-        </div>
-
-        <div className="auth__input__container">
-          <label htmlFor="update_name">Name: </label>
-          <input
-            id="update_name"
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            required
-          />
-        </div>
-        <div className="auth__input__container">
-          <label htmlFor="update_material">Material: </label>
-          <input
-            id="update_material"
-            type="text"
-            onChange={(e) => setMaterial(e.target.value)}
-            value={material}
-            required
-          />
-        </div>
-        <div className="auth__input__container">
-          <label htmlFor="update_color">Color: </label>
-          <input
-            id="update_color"
-            type="text"
-            onChange={(e) => setColor(e.target.value)}
-            value={color}
-            required
-          />
-        </div>
-        <div className="auth__input__container">
-          <label htmlFor="update_description">Description: </label>
-          <textarea
-            id="update_description"
-            className="hide-scrollbar"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            required
-          ></textarea>
-        </div>
-
-        <div className="auth__input__container">
-          <label htmlFor="update_category">Category: </label>
-          <select
-            id="update_category"
-            onChange={handleCategoryChange}
-            value={category}
-            required
+    <>
+      <div style={{ display: "flex" }}>
+        <Testing />
+        <div className="auth">
+          <DisplayPending pending={pending} />
+          <form
+            className="adminCreateProduct__container"
+            onSubmit={submitHandler}
           >
-            <option value="" disabled selected>
-              Select Category
-            </option>{" "}
-            {categories &&
-              categories.map((cat) => (
-                <option key={cat._id} value={cat._id}>
-                  {cat.name}
-                </option>
-              ))}
-          </select>
-        </div>
+            {createSuccess ? (
+              <Alert severity="success">Upload Succeed</Alert>
+            ) : error ? (
+              <Alert severity="error">{error}</Alert>
+            ) : null}
 
-        <div className="auth__input__container">
-          <label htmlFor="update_price">Price (In Rupees): </label>
-          <input
-            id="update_price"
-            type="number"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
-            min="0"
-            required
-          />
-        </div>
+            <div className="auth__title">Create new Product</div>
+            <div className="auth__input__container">
+              <label htmlFor="update_name">Product No: </label>
+              <input
+                id="update_productno"
+                type="text"
+                onChange={(e) => setProductno(e.target.value)}
+                value={productno}
+                required
+              />
+            </div>
 
-        <div className="product-image-upload__container">
-          <label htmlFor="product-image-upload">Image: </label>
-          <input
-            id="product-image-upload"
-            style={{ border: "none ", borderRadius: "0" }}
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImg(e.target.files[0])}
-          />
-        </div>
+            <div className="auth__input__container">
+              <label htmlFor="update_name">Name: </label>
+              <input
+                id="update_name"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                required
+              />
+            </div>
+            <div className="auth__input__container">
+              <label htmlFor="update_material">Material: </label>
+              <input
+                id="update_material"
+                type="text"
+                onChange={(e) => setMaterial(e.target.value)}
+                value={material}
+                required
+              />
+            </div>
+            <div className="auth__input__container">
+              <label htmlFor="update_color">Color: </label>
+              <input
+                id="update_color"
+                type="text"
+                onChange={(e) => setColor(e.target.value)}
+                value={color}
+                required
+              />
+            </div>
+            <div className="auth__input__container">
+              <label htmlFor="update_description">Description: </label>
+              <textarea
+                id="update_description"
+                className="hide-scrollbar"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                required
+              ></textarea>
+            </div>
 
-        <button type="submit" className="auth-button green-button">
-          Create
-        </button>
-        <button
-          className="auth-button"
-          type="submit"
-          onClick={() => navigate("/admin/productlist")}
-        >
-          Go Back
-        </button>
-      </form>
-    </div>
+            <div className="auth__input__container">
+              <label htmlFor="update_category">Category: </label>
+              <select
+                id="update_category"
+                onChange={handleCategoryChange}
+                value={category}
+                required
+              >
+                <option value="" disabled selected>
+                  Select Category
+                </option>{" "}
+                {categories &&
+                  categories.map((cat) => (
+                    <option key={cat._id} value={cat._id}>
+                      {cat.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            <div className="auth__input__container">
+              <label htmlFor="update_price">Price (In Rupees): </label>
+              <input
+                id="update_price"
+                type="number"
+                onChange={(e) => setPrice(e.target.value)}
+                value={price}
+                min="0"
+                required
+              />
+            </div>
+
+            <div className="product-image-upload__container">
+              <label htmlFor="product-image-upload">Image: </label>
+              <input
+                id="product-image-upload"
+                style={{ border: "none ", borderRadius: "0" }}
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImg(e.target.files[0])}
+              />
+            </div>
+
+            <button type="submit" className="auth-button green-button">
+              Create
+            </button>
+            <button
+              className="auth-button"
+              type="submit"
+              onClick={() => navigate("/admin/productlist")}
+            >
+              Go Back
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }

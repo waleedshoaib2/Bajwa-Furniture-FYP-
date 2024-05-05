@@ -52,10 +52,11 @@ const AdminChatList = ({ onChatSelect }) => {
 
   return (
     <>
-      <section className="message-area">
+      <section className="message-area-chatlist">
         <div className="container">
           <div className="row">
             <div className="col-12">
+              <h1 className="chat-header"> Chats </h1>
               <div className="search-bar">
                 <div className="search-input">
                   <span className="search-icon">
@@ -63,7 +64,6 @@ const AdminChatList = ({ onChatSelect }) => {
                   </span>
                   <input
                     type="text"
-                    placeholder="  Search ........."
                     value={searchQuery}
                     onChange={handleSearchChange}
                     className="search-input-field"

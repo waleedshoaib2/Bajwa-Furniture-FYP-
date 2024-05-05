@@ -11,7 +11,7 @@ export default function HomeAbout() {
         a delightful experience, which is why we make it easy for you to find
         the perfect piece for your space.
       </p>
-      {/* <img
+      <img
         className="home__about__bottomImg"
         src="https://d2c0vv5h4nuw6w.cloudfront.net/images/bg-landing.jpg"
         alt="landing background images"
@@ -24,7 +24,7 @@ export default function HomeAbout() {
         alt="landing background images"
         data-aos="fade-up"
         data-aos-duration="1000"
-      /> */}
+      />
     </div>
   );
 }
